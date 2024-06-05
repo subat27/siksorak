@@ -13,13 +13,12 @@ public class TestController {
 	private TestService service = new TestService();
 	
 	@GetMapping("location")
-	public String location() {		
+	public String location() {
 		return "location/list";
 	}
 	
 	@GetMapping("test")
 	public String test() {
-		
 		try {
 			service.printItems(service.callAPI());
 		} catch (Exception e) {
@@ -28,6 +27,11 @@ public class TestController {
 		};
 		
 		return "index";
+	}
+	
+	@GetMapping("map")
+	public String map() {
+		return "mapTest";
 	}
 
 }
