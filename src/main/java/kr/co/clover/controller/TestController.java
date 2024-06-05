@@ -12,6 +12,11 @@ public class TestController {
 
 	private TestService service = new TestService();
 	
+	@GetMapping("location")
+	public String location() {		
+		return "location/list";
+	}
+	
 	@GetMapping("test")
 	public String test() {
 		
@@ -22,7 +27,7 @@ public class TestController {
 			// TODO: handle exception
 		};
 		
-		return "test";
+		return "index";
 	}
-	
+
 }

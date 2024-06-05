@@ -9,17 +9,22 @@ import java.net.URLEncoder;
 
 import org.json.JSONObject;
 import org.json.JSONArray;
-
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TestService {
+	
+
+	@Value("${tour_api_key}")
+	private String tour_api_key;
+	
 
 	public String callAPI() throws IOException {
 
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://apis.data.go.kr/B551011/KorService1/searchKeyword1"); /* URL */
-		urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=" + "V%2FQ4Ujh%2BVO%2FzK3DgjulnF4DfwzZ4leRZ5YpkF2QzVGmNLU1CrSN%2FnaEdALrEgxibx8DfuwoNIP6cDj9SyTUOeQ%3D%3D"); /* Service Key */
+		urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=" + tour_api_key); /* Service Key */
 		urlBuilder.append("&" + URLEncoder.encode("MobileOS", "UTF-8") + "=" + URLEncoder.encode("WIN", "UTF-8")); /* 사용기기정보(정보수집용) */
 		urlBuilder.append("&" + URLEncoder.encode("MobileApp", "UTF-8") + "=" + URLEncoder.encode("test", "UTF-8")); /* 서비스명(어플명) */
 		urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("1000", "UTF-8")); /* 한 페이지 결과 수 */
