@@ -13,31 +13,36 @@
 	<div class="container px-4 px-lg-5 mt-5">
 		<div
 			class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-			
-			<!-- 관광지 정보 -->
-			<div class="col mb-5">
-				<div class="card h-100">
-					<!-- 관광지 이미지 -->
-					<img class="card-img-top"
-						src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-					<!-- 관광지 상세 -->
-					<div class="card-body p-4">
-						<div class="text-center">
-							<!-- 관광지명 -->
-							<h5 class="fw-bolder">관광지명1</h5>
-							<!-- 관광지 간단한 설명-->
-							간단한 설명1
+			<c:forEach items="${paging.content}" var="location">
+
+				<!-- 관광지 정보 -->
+				<div class="col mb-5">
+					<div class="card h-100">
+						<!-- 관광지 이미지 -->
+						<img class="card-img-top" src="${location.firstimage }" alt="..." />
+						<!-- 관광지 상세 -->
+						<div class="card-body p-4">
+							<div class="text-center">
+								<!-- 관광지명 -->
+								<h5 class="fw-bolder">${location.title }</h5>
+								<!-- 관광지 간단한 설명-->
+								${location.addr1 }
+							</div>
 						</div>
-					</div>
-					<!-- 상세 페이지로 이동 -->
-					<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-						<div class="text-center">
-							<a class="btn btn-outline-dark mt-auto" href="#">상세보기</a>
+						<!-- 상세 페이지로 이동 -->
+						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+							<div class="text-center">
+								<a class="btn btn-outline-dark mt-auto" href="#">상세보기</a>
+							</div>
 						</div>
 					</div>
 				</div>
+			</c:forEach>
+
+			<div>
+				<jsp:include page="part_paging.jsp" />
 			</div>
-			
+
 			<!-- 관광지 정보 -->
 			<div class="col mb-5">
 				<div class="card h-100">

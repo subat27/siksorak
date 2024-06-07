@@ -36,7 +36,10 @@
 <script src="/js/main_page_scripts.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		$(".moveBtn").click(function() {
+			let dest = $(this).attr("data-dest")
+			location.href = "/list?page=" + dest;
+		});
 	});
 </script>
 </body>

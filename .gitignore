@@ -1,8 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/windows,eclipse,intellij,java,maven
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,eclipse,intellij,java,maven
 
-application.yaml
-application-API-KEY.yaml
+application.yml
+application-API-KEY.yml
 api_key.js
 
 ### Eclipse ###
