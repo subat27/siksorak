@@ -38,20 +38,18 @@ if (number > 1 && number < totalPages - 1) {
 	<a href="/list?page=${paging.number }"></a>
 </c:if>
 
+<div>
+	<button class="moveBtn btn btn-light" data-dest="${prevPage }">이전</button>
+	<c:forEach begin="${beginPageNum}" end="${endPageNum}" var="page">
+		<c:choose>
+			<c:when test="${paging.getNumber()+1 == page}">
+				<a class="btn btn-primary" href="/list?page=${page}">${page}</a>
+			</c:when>
+			<c:otherwise>
+				<a class="btn btn-secondary" href="/list?page=${page}">${page}</a>
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
+	<button class="moveBtn btn btn-light" data-dest="${nextPage }">다음</button>
+</div>
 
-<button class="moveBtn" data-dest="${prevPage }">이전</button>
-<c:forEach begin="${beginPageNum}" end="${endPageNum}" var="page">
-	<c:choose>
-		<c:when test="${paging.getNumber()+1 == page}">
-			<a class="currentPage" href="/list?page=${page}">${page}</a>
-		</c:when>
-		<c:otherwise>
-			<a href="/list?page=${page}">${page}</a>
-		</c:otherwise>
-	</c:choose>
-</c:forEach>
-<button class="moveBtn" data-dest="${nextPage }">다음</button>
-
-<p>${paging.getNumber()+1 == 2 ? "y" : "n"}</p>
-
-<p class="${paging.getNumber()+1 == 2 ? 'currentPage' : ''}">test</p>

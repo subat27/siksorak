@@ -1,5 +1,7 @@
 package kr.co.clover.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -37,6 +39,16 @@ public class TestController {
 	};
 		
 		return "index";
+	}
+	
+	@GetMapping("test2")
+	public String test2(String contentId, Model model) {
+		try {
+			model.addAttribute("details", tService.detailContent(contentId, apiService.getTourApiKey()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "location/detail";
 	}
 	
 	@GetMapping("list")

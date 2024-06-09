@@ -40,6 +40,12 @@
 			let dest = $(this).attr("data-dest")
 			location.href = "/list?page=" + dest;
 		});
+		
+		$("div.col-lg-4").click(function() {
+			alert($(this).find('h3').html());
+			/* location.href = "/list" */
+		});
+		
 	});
 </script>
 </body>
