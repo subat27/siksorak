@@ -23,7 +23,7 @@
 
 var map = null;
 const NAVER_MAP_API = config.naver_map_key;
-$.getScript("https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId="+NAVER_MAP_API+"&submodules=panorama", function(){
+$.getScript("https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId="+NAVER_MAP_API, function(){
 	var mapOptions = {
 		    center: new naver.maps.LatLng(37.3595704, 127.105399),
 		    zoom: 10
