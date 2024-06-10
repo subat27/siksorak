@@ -9,7 +9,7 @@
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container px-4 px-lg-5">
-			<a class="navbar-brand" href="/">서울시 관광정보</a>
+			<a class="navbar-brand" href="/">식소락</a>
 			<!-- 웹페이지 사이즈가 작아 졌을 때 햄버거 버튼으로 변환 -->
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -24,19 +24,22 @@
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">테마별</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="#!">테마1</a></li>
-							<li><a class="dropdown-item" href="#!">테마2</a></li>
-							<li><a class="dropdown-item" href="#!">테마3</a></li>
+							<li><a class="dropdown-item" href="/list?contentType=음식">음식</a></li>
+							<li><a class="dropdown-item" href="/list?contentType=명소">명소</a></li>
+							<li><a class="dropdown-item" href="/list?contentType=오락">오락</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">지역별</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="#!">강동구</a></li>
+							<c:forEach items="" var="sigungu">
+								<li><a class="dropdown-item" href="/list?sigunguCode=강동구">강동구</a></li>						
+							
 							<li><a class="dropdown-item" href="#!">중랑구</a></li>
 							<li><hr class="dropdown-divider" /></li>
 							<li><a class="dropdown-item" href="#!">강서구</a></li>
 							<li><a class="dropdown-item" href="#!">강남구</a></li>
+							</c:forEach>
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" aria-current="page"
 						href="#!">진행중인 축제/행사</a></li>

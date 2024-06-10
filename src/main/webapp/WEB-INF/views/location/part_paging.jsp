@@ -43,10 +43,10 @@ if (number > 1 && number < totalPages - 1) {
 	<c:forEach begin="${beginPageNum}" end="${endPageNum}" var="page">
 		<c:choose>
 			<c:when test="${paging.getNumber()+1 == page}">
-				<a class="btn btn-primary" href="/list?page=${page}">${page}</a>
+				<a class="btn btn-primary" href="/list?page=${page}&keyword=${keyword }">${page}</a>
 			</c:when>
 			<c:otherwise>
-				<a class="btn btn-secondary" href="/list?page=${page}">${page}</a>
+				<a class="btn btn-secondary" href="/list?page=${page}&keyword=${keyword }">${page}</a>
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>

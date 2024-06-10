@@ -11,8 +11,8 @@ import kr.co.clover.entity.Location;
 
 @Repository
 public interface LocationRepository extends JpaRepository<Location, Integer>{
-	List<Location> findByAddr1Containing(String keyword);
-	List<Location> findByTitleContaining(String keyword);
-	
 	Page<Location> findAll(Pageable pageable);
+	Page<Location> findByTitleContainingOrAddr1Containing(String title, String addr1, Pageable pageable);
+	Page<Location> findBySigungucode(Integer sigunguCode, Pageable pageable);
+	Page<Location> findByContenttypeidIn(List<String> contenttypeid, Pageable pageable);
 }

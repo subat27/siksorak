@@ -28,18 +28,16 @@ $.getScript("https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId="+NAVER_M
 		    center: new naver.maps.LatLng(37.3595704, 127.105399),
 		    zoom: 10
 		};
+	
 	map = new naver.maps.Map('map', mapOptions);
 	
-    var position = new naver.maps.LatLng(
-    		mapx,
-    		mapy;
-	
-	var marker = new naver.maps.Marker({
-		position: position,
-	    map: map	    
-	});
 
-});
+	var marker = new naver.maps.Marker({
+	    position: new naver.maps.LatLng(37.3595704, 127.105399),
+	    map: map
+	});
+	
+	});
 
 </script>
 </body>
