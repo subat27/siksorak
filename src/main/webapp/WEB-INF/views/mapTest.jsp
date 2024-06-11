@@ -29,8 +29,17 @@ $.getScript("https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId="+NAVER_M
 		    zoom: 10
 		};
 	map = new naver.maps.Map('map', mapOptions);
-});
+	
+    var position = new naver.maps.LatLng(
+    		mapx,
+    		mapy;
+	
+	var marker = new naver.maps.Marker({
+		position: position,
+	    map: map	    
+	});
 
+});
 
 </script>
 </body>

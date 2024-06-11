@@ -43,13 +43,44 @@
 					<li class="nav-item"><a class="nav-link" aria-current="page"
 						href="#!">날씨</a></li>
 				</ul>
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+					<li class="nav-item">
+					<c:choose>
+						<c:when test="${empty login}">
+							<a class="nav-link" aria-current="page"	href="/member/login">로그인</a>		
+						</c:when>
+		
+						<c:otherwise>
+							<a class="nav-link" aria-current="page"	href="/member/logout">로그아웃</a>
+						</c:otherwise>
+					</c:choose>
+					</li>			
+									
+					<c:choose>
+						<c:when test="${empty login}">
+							<li class="nav-item"><a class="nav-link" aria-current="page"
+							href="/member/insert">회원가입</a></li>						
 
+						</c:when>
+						<c:otherwise>
+							<li class="nav-item"><a class="nav-link" aria-current="page"
+							href="/member/detail/${login.userid}">My</a></li>						
+						</c:otherwise>
+					</c:choose>							
+
+				</ul>
+				<c:choose>
+				<c:when test="${empty login}">
+				</c:when>	
+				<c:otherwise>	
 				<form class="d-flex">
 					<button class="btn btn-outline-dark" type="submit">
 						<i class="bi-suit-heart-fill me-1"></i> 찜목록 <span
 							class="badge bg-dark text-white ms-1 rounded-pill">0</span>
 					</button>
 				</form>
+				</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</nav>
