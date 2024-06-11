@@ -10,9 +10,32 @@
 
 <!-- Section-->
 <section class="py-5">
+	<style>
+    table {
+        border-collapse: collapse;
+        width: 60%;
+        margin-left: auto; margin-right: auto;
+        text-align: center;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        border-left: 1px solid #ddd;
+    }
+
+    tr:hover {
+        background-color: lavender;
+    }
+	</style>
+
 	<table>
 		<tr>
-			<th>장소명</th>
+			<td colspan="2"><img class="card-img-top" src="${details.get(0)['firstimage'] }" width="70" height="70%" alt="..." /></td>
+		</tr>
+		<tr>
+			<th style="width:9%">장소명</th>
 			<td>${details.get(0)["title"] }</td>
 		</tr>
 		<tr>
@@ -35,14 +58,10 @@
 			<th>홈페이지</th>
 			<td>${details.get(0)["homepage"] }</td>
 		</tr>
-		<tr>
-			<th>사진1</th>
-			<td><img class="card-img-top" src="${details.get(0)['firstimage'] }" width="100%" height="100%" alt="..." /></td>
-		</tr>
-		<tr>
+<!--    <tr>
 			<th>사진2</th>
 			<td><img class="card-img-top" src="${details.get(0)['firstimage2'] }" width="100%" height="100%" alt="..." /></td>
-		</tr>
+		</tr> -->
 	</table>
 
 </section>
