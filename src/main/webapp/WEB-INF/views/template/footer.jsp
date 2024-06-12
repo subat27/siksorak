@@ -22,6 +22,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <!-- Bootstrap core JS-->
 <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/js/member.js"></script>
 <!-- Core theme JS-->
 <script src="/js/main_page_scripts.js"></script>
 <script type="text/javascript">
@@ -54,6 +55,14 @@
 			var contentType = $("#contentTypeSelect").val();
 			location.href = "/list?contentType=" + contentType;
 		});
+	});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		jjim();
+
 	});
 </script>
 </body>

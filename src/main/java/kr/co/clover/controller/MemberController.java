@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import domain.UtilsForBoard;
+import kr.co.clover.entity.Location;
 import kr.co.clover.entity.Member;
+import kr.co.clover.entity.MemberLocation;
 import kr.co.clover.service.MemberService;
 
 @Controller
@@ -25,15 +27,25 @@ import kr.co.clover.service.MemberService;
 public class MemberController {
 	@Autowired
 	private MemberService mService;
+
 	
-	@GetMapping("/logout")
-	public String logout(HttpSession session) {
+	@GetMapping("/jjim/{test}")
+	@ResponseBody
+	public Map<String, String> jjim(@PathVariable("test") String test,	
+												HttpSession session){
+		Map<String, String> data = new HashMap<String, String>();
+		String userid =((Member)session.getAttribute("login")).getUserid(); 
+		Member member = mService.findByUserid(userid);
 		
-		session.invalidate();
+		if(member == null) {
+			data.put("result", "찜");
+		}else {
+			data.put("result", "이미 찜된 장소입니다.");
+		}
 		
-		
-		return "redirect:/";
+		return data;
 	}	
+	
 	
 	@PostMapping("/login")
 	public String login(Member member, HttpSession session) {
@@ -55,10 +67,10 @@ public class MemberController {
 	
 	@GetMapping("/check/{userid}")
 	@ResponseBody
-	public Map<String, String> checkUsername(@PathVariable("userid") String userid){
+	public Map<String, String> checkUserid(@PathVariable("userid") String userid){
 		Map<String, String> map = new HashMap<String, String>();
 		
-		Member member = mService.findByUsername(userid);
+		Member member = mService.findByUserid(userid);
 		
 		if(member == null) {
 			map.put("result", "사용할 수 있는 아이디입니다.");
@@ -126,7 +138,7 @@ public class MemberController {
 	
 	@GetMapping("/detail/{userid}")
 	public String detail(@PathVariable("userid") String userid, Model model) {
-		Member member = mService.findByUsername(userid);
+		Member member = mService.findByUserid(userid);
 		
 		model.addAttribute("member", member);
 		

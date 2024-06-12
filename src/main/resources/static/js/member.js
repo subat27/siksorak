@@ -1,3 +1,19 @@
+function jjim(){
+	$(".jjimBtn").click(function(){
+		
+		
+	let test = $(this).val();
+	
+	let uri = `/member/jjim/${test}`;
+		
+	$.getJSON(uri, function(data){
+			alert(data.result);
+		});	
+	
+		
+	});
+}
+
 function checkUserid(){
 	$("#checkUseridBtn").click(function(){
 		

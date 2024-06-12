@@ -77,7 +77,7 @@ public class MemberService {
 	}	
 	
 	
-	public Member findByUsername(String userid) {
+	public Member findByUserid(String userid) {
 		Member member = mRepository.findByUserid(userid);
 		
 		return member;
