@@ -6,9 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.json.JSONObject;
 import org.json.JSONArray;
@@ -38,7 +36,7 @@ public class TestService {
 		urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("10000", "UTF-8")); /* 한 페이지 결과 수 */
 		urlBuilder.append("&" + URLEncoder.encode("areaCode", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /* 한 페이지 결과 수 */
 		urlBuilder.append("&" + URLEncoder.encode("_type", "UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /* response type 설정 */
-		System.out.println(urlBuilder.toString());
+		
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
@@ -58,8 +56,6 @@ public class TestService {
 		}
 		rd.close();
 		conn.disconnect();
-		
-		System.out.println(sb.toString());
 		
 		return sb.toString();
 	}
@@ -88,12 +84,30 @@ public class TestService {
 		return lRepository.findAll(pageable);
 	}
 	
-	public List<Location> findLocationByAddress(String address){
-		return lRepository.findByAddr1Containing(address);
+	
+	public Page<Location> findByKeyword(int page, String keyword){
+		int pagePerBoardCount = 12;
+		Pageable pageable = PageRequest.of(page, pagePerBoardCount,
+				Sort.by(Sort.Direction.ASC, "id"));
+		
+		return lRepository.findByTitleContainingOrAddr1Containing(keyword, keyword, pageable);
 	}
 	
-	public List<Location> findLocationByTitle(String title){
-		return lRepository.findByTitleContaining(title);
+	
+	public Page<Location> findByContentType(int page, List<String> contentTypeId){
+		int pagePerBoardCount = 12;
+		Pageable pageable = PageRequest.of(page, pagePerBoardCount,
+				Sort.by(Sort.Direction.ASC, "id"));
+				
+		return lRepository.findByContenttypeidIn(contentTypeId, pageable);
+	}
+	
+	public Page<Location> findBySigungucode(int page, Integer areaCode){
+		int pagePerBoardCount = 12;
+		Pageable pageable = PageRequest.of(page, pagePerBoardCount,
+				Sort.by(Sort.Direction.ASC, "id"));
+		
+		return lRepository.findBySigungucode(areaCode, pageable);
 	}
 	
 	public List<Object> detailContent(String contentId, String key) throws IOException {
@@ -110,7 +124,7 @@ public class TestService {
 		urlBuilder.append("&" + URLEncoder.encode("addrinfoYN", "UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("mapinfoYN", "UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("overviewYN", "UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8"));
-		System.out.println(urlBuilder.toString());
+		
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
@@ -131,13 +145,9 @@ public class TestService {
 		rd.close();
 		conn.disconnect();
 		
-		System.out.println(sb.toString());
-		
 		JSONObject jsonObject = new JSONObject(sb.toString());
 		JSONArray jsonArray = jsonObject.getJSONObject("response").getJSONObject("body").getJSONObject("items").getJSONArray(("item"));
-		
-		System.out.println(jsonArray.toList().get(0).getClass());
-		
+
 		return jsonArray.toList();
 	}
 

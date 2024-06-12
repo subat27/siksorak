@@ -72,13 +72,14 @@
 			<td><img class="card-img-top" src="${details.get(0)['firstimage2'] }" width="100%" height="100%" alt="..." /></td>
 		</tr> -->
 	</table>
+	
+	<div id="map" style="width:100%;height:400px;"></div>
 
 </section>
 
 <script type="text/javascript" src="js/api_key.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
-
 
 var map = null;
 const NAVER_MAP_API = config.naver_map_key;
