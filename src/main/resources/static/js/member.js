@@ -7,7 +7,7 @@ function jjim(){
 	let uri = `/member/jjim/${test}`;
 		
 	$.getJSON(uri, function(data){
-			alert(data.result);
+			alert(data);
 		});	
 	
 		

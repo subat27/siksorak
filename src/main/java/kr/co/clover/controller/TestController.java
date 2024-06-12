@@ -45,12 +45,10 @@ public class TestController {
 			paging = tService.findByKeyword(page, keyword);
 		} else if (contentType != null) {
 			ApiCode apiCode = new ApiCode();
-			System.out.println(apiCode.getContentsCode(contentType));
 			paging = tService.findByContentType(page, apiCode.getContentsCode(contentType));
 			session.setAttribute("contentType", contentType);
 		} else if (sigunguCode != null) {
 			ApiCode apiCode = new ApiCode();
-			System.out.println(apiCode.getSigunguCode(sigunguCode));
 			paging = tService.findBySigungucode(page, apiCode.getSigunguCode(sigunguCode));
 			session.setAttribute("sigunguCode", sigunguCode);
 		} else {

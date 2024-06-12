@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import domain.UtilsForBoard;
 import kr.co.clover.entity.Location;
 import kr.co.clover.entity.Member;
 import kr.co.clover.entity.MemberLocation;
+import kr.co.clover.service.MemberLocationService;
 import kr.co.clover.service.MemberService;
 
 @Controller
@@ -27,23 +29,20 @@ import kr.co.clover.service.MemberService;
 public class MemberController {
 	@Autowired
 	private MemberService mService;
+	
+	@Autowired
+	private MemberLocationService mlService;
 
 	
 	@GetMapping("/jjim/{test}")
 	@ResponseBody
-	public Map<String, String> jjim(@PathVariable("test") String test,	
-												HttpSession session){
-		Map<String, String> data = new HashMap<String, String>();
-		String userid =((Member)session.getAttribute("login")).getUserid(); 
-		Member member = mService.findByUserid(userid);
+	public int jjim(@PathVariable("test") Integer test, HttpSession session, HttpServletRequest request){
 		
-		if(member == null) {
-			data.put("result", "찜");
-		}else {
-			data.put("result", "이미 찜된 장소입니다.");
-		}
 		
-		return data;
+		
+		System.out.println(request.getSession(false).getAttribute("login"));
+		
+		return test;
 	}	
 	
 	
