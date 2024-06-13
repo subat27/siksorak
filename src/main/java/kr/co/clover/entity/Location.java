@@ -44,5 +44,6 @@ public class Location {
 	private String booktour;
 	private String mlevel;
 	private String cpyrhtDivCd;
-	
+
+
 }

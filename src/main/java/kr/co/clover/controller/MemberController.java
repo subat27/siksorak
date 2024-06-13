@@ -20,13 +20,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import domain.UtilsForBoard;
 import kr.co.clover.entity.Member;
 import kr.co.clover.service.MemberService;
+import kr.co.clover.service.TestService;
 
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 	@Autowired
 	private MemberService mService;
-	
+
 	@GetMapping("/jjim/{test}")
 	@ResponseBody
 	public int jjim(@PathVariable("test") Integer test, HttpSession session, HttpServletRequest request){
