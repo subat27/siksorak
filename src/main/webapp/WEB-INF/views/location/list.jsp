@@ -14,7 +14,7 @@
 		<h3>관광지 목록</h3>
 		<div class="row g-3 mb-3">
 			<select class="form-select me-2" style="width: 25%; display: inline;" id="sigunguCodeSelect">
-				<option selected>지역명</option>
+				<option value="" selected>지역명</option>
 				<option value="강남구">강남구</option>
 				<option value="강동구">강동구</option>
 				<option value="강북구">강북구</option>
@@ -42,18 +42,15 @@
 				<option value="중랑구">중랑구</option>
 			</select>
 			<select class="form-select me-2" style="width: 25%; display: inline;" id="contentTypeSelect">
-				<option selected>테마명</option>
+				<option value="" selected>테마명</option>
 				<option value="음식">음식</option>
 				<option value="명소">명소</option>
 				<option value="오락">오락</option>
 			</select>
 			
 			
-			<input class="form-control me-2"
-				style="width: 65%; display: inline;" name="keyword"
-				placeholder="지역명 또는 키워드를 입력해주세요">
-
-			<button type="button" class="btn btn-primary col-auto">검색</button>
+			<input class="form-control me-2 keywordValue" style="width: 65%; display: inline;" placeholder="지역명 또는 키워드를 입력해주세요">
+			<button type="button" class="btn btn-primary col-auto keywordSearch">검색</button>
 		</div>
 
 

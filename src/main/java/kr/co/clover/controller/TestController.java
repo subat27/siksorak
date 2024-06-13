@@ -32,39 +32,6 @@ public class TestController {
 	@Autowired
 	private ApiService apiService;
 	
-
-
-	@GetMapping("jjim")
-	public String jjimLocation(@RequestParam(value = "page", defaultValue = "1") Integer page, Model model,
-			String keyword, String contentType, String sigunguCode, HttpSession session) {
-		page -= 1;
-		
-		Page<Location> paging = null;
-		
-		if (keyword != null) {
-			paging = tService.findByKeyword(page, keyword);
-		} else if (contentType != null) {
-			ApiCode apiCode = new ApiCode();
-			paging = tService.findByContentType(page, apiCode.getContentsCode(contentType));
-			session.setAttribute("contentType", contentType);
-		} else if (sigunguCode != null) {
-			ApiCode apiCode = new ApiCode();
-			paging = tService.findBySigungucode(page, apiCode.getSigunguCode(sigunguCode));
-			session.setAttribute("sigunguCode", sigunguCode);
-		} else {
-			paging = tService.findAll(page);
-		}
-		
-		model.addAttribute("paging", paging);
-		model.addAttribute("keyword", keyword);
-		return "member_location/jjim";
-	}
-
-	@GetMapping("location")
-	public String location() {
-		return "location/list";
-	}
-
 	@GetMapping("test")
 	public String test() {
 
@@ -94,25 +61,24 @@ public class TestController {
 		page -= 1;
 		
 		Page<Location> paging = null;
+		ApiCode apiCode = new ApiCode();
 		
-		if (keyword != null) {
-			paging = tService.findByKeyword(page, keyword);
-		} else if (contentType != null) {
-			ApiCode apiCode = new ApiCode();
-			System.out.println(apiCode.getContentsCode(contentType));
-			paging = tService.findByContentType(page, apiCode.getContentsCode(contentType));
-			session.setAttribute("contentType", contentType);
-		} else if (sigunguCode != null) {
-			ApiCode apiCode = new ApiCode();
-			System.out.println(apiCode.getSigunguCode(sigunguCode));
-			paging = tService.findBySigungucode(page, apiCode.getSigunguCode(sigunguCode));
-			session.setAttribute("sigunguCode", sigunguCode);
+		if (contentType == "") {
+			paging = tService.findLocationExceptTheme(page, keyword, sigunguCode);
+			
+			System.out.println(paging.getSize());
+			System.out.println("asdf");
 		} else {
-			paging = tService.findAll(page);
+			paging = tService.findLocationContainTheme(page, keyword, sigunguCode, apiCode.getContentsCode(contentType));
+			//session.setAttribute("contentType", contentType);
+			
 		}
 		
 		model.addAttribute("paging", paging);
-		model.addAttribute("keyword", keyword);
+		session.setAttribute("keyword", keyword);
+		session.setAttribute("sigunguCode", sigunguCode);
+		session.setAttribute("contentType", contentType);
+		
 		return "location/list";
 	}
 

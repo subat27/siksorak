@@ -29,6 +29,8 @@
 	$(document).ready(function() {
 		var sigunguCode = "${sigunguCode}";
 		var contentType = "${contentType}";
+		var keyword = "${keyword}";
+		
 		if (sigunguCode != "") {
 			$("#sigunguCodeSelect").val("${sigunguCode}");
 		}
@@ -36,24 +38,34 @@
 			$("#contentTypeSelect").val("${contentType}");
 		}
 
-		$(".moveBtn").click(function() {
+		/* $(".moveBtn").click(function() {
 			let dest = $(this).attr("data-dest")
 			location.href = "/list?page=" + dest + "&keyword=${keyword }";
+		}); */
+		
+		$(".pagenationBtn > button").click(function() {
+			let dest = $(this).attr("data-dest")
+			location.href = "/list?page=" + dest + "&sigunguCode=" + sigunguCode + "&keyword=" + keyword + "&contentType=" + contentType;
 		});
-
+		
+		$(".keywordSearch").click(function() {
+			keyword = $(".keywordValue").val();
+			location.href = "/list?sigunguCode=" + sigunguCode + "&keyword=" + keyword + "&contentType=" + contentType;
+		});
+		
 		$("div.col-lg-4").click(function() {
 			var contentType = $(this).find('h3').html();
-			location.href = "/list?contentType=" + contentType;
+			location.href = "/list?sigunguCode=" + sigunguCode + "&keyword=" + keyword + "&contentType=" + contentType;			
 		});
 
 		$("#sigunguCodeSelect").change(function(){
 			var sigunguCode = $("#sigunguCodeSelect").val();
-			location.href = "/list?sigunguCode=" + sigunguCode;
+			location.href = "/list?sigunguCode=" + sigunguCode + "&keyword=" + keyword + "&contentType=" + contentType;
 		});
 
 		$("#contentTypeSelect").change(function(){
 			var contentType = $("#contentTypeSelect").val();
-			location.href = "/list?contentType=" + contentType;
+			location.href = "/list?sigunguCode=" + sigunguCode + "&keyword=" + keyword + "&contentType=" + contentType;
 		});
 	});
 </script>

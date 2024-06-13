@@ -23,12 +23,16 @@ import kr.co.clover.entity.Member;
 import kr.co.clover.entity.MemberLocation;
 import kr.co.clover.service.MemberLocationService;
 import kr.co.clover.service.MemberService;
+import kr.co.clover.service.TestService;
 
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 	@Autowired
 	private MemberService mService;
+	
+	@Autowired
+	private TestService tService;
 	
 	@Autowired
 	private MemberLocationService mlService;
@@ -38,9 +42,16 @@ public class MemberController {
 	@ResponseBody
 	public int jjim(@PathVariable("test") Integer test, HttpSession session, HttpServletRequest request){
 		
+		System.out.println();
 		
 		
-		System.out.println(request.getSession(false).getAttribute("login"));
+		Member member = (Member)request.getSession(false).getAttribute("login");
+		
+		MemberLocation memberLocation = new MemberLocation();
+		memberLocation.setMember(member);
+		memberLocation.setLocation(tService.findLocation(test));
+		
+		mlService.insertJjim(memberLocation);
 		
 		return test;
 	}	

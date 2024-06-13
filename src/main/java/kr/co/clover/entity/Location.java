@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +32,7 @@ public class Location {
 	private String addr1;
 	private String addr2;
 	private Integer areacode;
-	private Integer sigungucode;
+	private String sigungucode;
 	private String cat1;
 	private String cat2;
 	private String cat3;
@@ -49,6 +51,7 @@ public class Location {
 	private String mlevel;
 	private String cpyrhtDivCd;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "location", cascade = CascadeType.REMOVE)
 	private List<MemberLocation> memberlocationList;
 

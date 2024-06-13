@@ -84,31 +84,27 @@ public class TestService {
 		return lRepository.findAll(pageable);
 	}
 	
-	
-	public Page<Location> findByKeyword(int page, String keyword){
-		int pagePerBoardCount = 12;
-		Pageable pageable = PageRequest.of(page, pagePerBoardCount,
-				Sort.by(Sort.Direction.ASC, "id"));
-		
-		return lRepository.findByTitleContainingOrAddr1Containing(keyword, keyword, pageable);
+	public Location findLocation(int locationId) {
+		return lRepository.findById(locationId).get();
 	}
 	
+	public Page<Location> findLocationExceptTheme(int page, String keyword, String sigungucode){
+		int pagePerBoardCount = 12;
+		Pageable pageable = PageRequest.of(page, pagePerBoardCount,
+				Sort.by(Sort.Direction.ASC, "id"));		
+		
+		return lRepository.findByTitleOrAddr1AndSigungucode(keyword, keyword, sigungucode, pageable);		
+	}
 	
-	public Page<Location> findByContentType(int page, List<String> contentTypeId){
+	public Page<Location> findLocationContainTheme(int page, String keyword, String sigungucode, List<String> contentTypeId){
 		int pagePerBoardCount = 12;
 		Pageable pageable = PageRequest.of(page, pagePerBoardCount,
 				Sort.by(Sort.Direction.ASC, "id"));
 				
-		return lRepository.findByContenttypeidIn(contentTypeId, pageable);
+		return lRepository.findByTitleOrAddr1AndSigungucodeAndContentTypeId(keyword, keyword, sigungucode, contentTypeId, pageable);
 	}
 	
-	public Page<Location> findBySigungucode(int page, Integer areaCode){
-		int pagePerBoardCount = 12;
-		Pageable pageable = PageRequest.of(page, pagePerBoardCount,
-				Sort.by(Sort.Direction.ASC, "id"));
-		
-		return lRepository.findBySigungucode(areaCode, pageable);
-	}
+	
 	
 	public List<Object> detailContent(String contentId, String key) throws IOException {
 		StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/B551011/KorService1/detailCommon1"); /* URL */
