@@ -22,6 +22,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.co.clover.entity.Location;
 import kr.co.clover.repository.LocationRepository;
 
+// 삭제 예정
+
 @Service
 public class TestService {
 	

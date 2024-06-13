@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import domain.UtilsForBoard;
 import kr.co.clover.entity.Member;
 import kr.co.clover.service.MemberService;
-import kr.co.clover.service.TestService;
 
 @Controller
 @RequestMapping("/member")
@@ -31,12 +30,10 @@ public class MemberController {
 	@GetMapping("/jjim/{test}")
 	@ResponseBody
 	public int jjim(@PathVariable("test") Integer test, HttpSession session, HttpServletRequest request){
-		
-				
 		return test;
 	}	
 	
-	
+	// 로그인 기능 수행
 	@PostMapping("/login")
 	public String login(Member member, HttpSession session) {
 		boolean result = mService.findByUseridAndPassword(member);
@@ -49,11 +46,13 @@ public class MemberController {
 			return "/member/login";
 		}
 	}	
-	
+
+	// 로그인 화면으로 이동
 	@GetMapping("/login")
 	public void login() {
 	}	
 	
+	// 로그아웃 기능 수행
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
@@ -61,6 +60,7 @@ public class MemberController {
 		return "redirect:/";
 	}	
 	
+	// 회원가입 아이디 유효성 검사
 	@GetMapping("/check/{userid}")
 	@ResponseBody
 	public Map<String, String> checkUserid(@PathVariable("userid") String userid){
@@ -74,17 +74,18 @@ public class MemberController {
 			map.put("result", "사용할 수 없는 아이디입니다.");
 		}
 		
-		
 		return map;
 	}
 	
+	// 회원 탈퇴
 	@PostMapping("/delete")
 	public String delete(Member member) {
 		mService.delete(member);
 		
 		return "redirect:/board/list";
 	}	
-	
+
+	// 회원 정보 수정
 	@PostMapping("/update/{userid}")
 	public String update(Member member) {
 		Date d = new Date();
@@ -99,6 +100,7 @@ public class MemberController {
 		return "redirect:/member/detail/"+member.getUserid();
 	}	
 	
+	// 회원 정보 수정 화면으로 이동
 	@GetMapping("/update/{userid}")
 	public String update(@PathVariable("userid") String userid, Model model) {
 		
@@ -109,6 +111,7 @@ public class MemberController {
 		return "member/update";
 	}
 
+	// 비밀번호 수정
 	@PostMapping("/update/password/{userid}")
 	public String updatePassword(@PathVariable("userid") String userid,
 														String org_password, 
@@ -124,14 +127,16 @@ public class MemberController {
 
 		
 		return "redirect:/member/detail/"+userid;
-	}	
-	
+	}
+		
+	// 비밀번호 수정 화면으로 이동
 	@GetMapping("/update/password/{userid}")
 	public String updatePassword(@PathVariable("userid") String userid) {
 		
 		return "/member/updatePassword";
 	}	
 	
+	// 마이페이지로 이동
 	@GetMapping("/detail/{userid}")
 	public String detail(@PathVariable("userid") String userid, Model model) {
 		Member member = mService.findByUserid(userid);
@@ -141,26 +146,24 @@ public class MemberController {
 		return "/member/detail";
 	}
 	
-	
+	// 회원 가입 화면으로 이동
 	@GetMapping("/insert")
 	public String insert() {
 		
 		return "member/insert";
 	}
 	
-	
+	// 회원 가입 기능 수행
 	@PostMapping("/insert")
 	public String insert(Member member, Model model) {
 		
 		boolean result = UtilsForBoard.validateMember(member);
 		
-		if(!result) {
-			
+		if(!result) {			
 			model.addAttribute("member", member);
 			return "/member/insert";
 		}
-		
-		
+				
 		Date d = new Date();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
@@ -170,7 +173,6 @@ public class MemberController {
 		member.setUpdateDate(now);
 		
 		mService.save(member);
-		
 		
 		return "redirect:/";
 	}

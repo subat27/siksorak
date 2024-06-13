@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ApiService {
-	
 	private String tour_api_key;
 
 	public ApiService(@Value("${tour-api-key}") String test) {
@@ -27,6 +26,7 @@ public class ApiService {
 		return this.tour_api_key;
 	}
 	
+	// 서울 관광정보 호출
 	public String getSeoulLocationData() throws IOException {
 		StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/B551011/KorService1/areaBasedList1"); /* URL */
 		urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=" + getTourApiKey()); /* Service Key */
@@ -59,6 +59,7 @@ public class ApiService {
 		return sb.toString();
 	}
 	
+	// 상세 정보 호출
 	public List<Object> detailContent(String contentId) throws IOException {
 		StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/B551011/KorService1/detailCommon1"); /* URL */
 		urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=" + getTourApiKey()); /* Service Key */

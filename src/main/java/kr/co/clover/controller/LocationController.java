@@ -27,18 +27,18 @@ public class LocationController {
 	@Autowired
 	private LocationService lService;
 	
+	// api로 서울 관광지 정보를 가져와서 DB에 저장 
 	@GetMapping("insert")
 	public String test() {
-
 		try {
 			lService.insertItems(apiService.getSeoulLocationData());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return "index";
 	}
 
+	// 상세 페이지로 이동
 	@GetMapping("detail")
 	public String detail(String contentId, Model model) {
 		try {
@@ -49,6 +49,7 @@ public class LocationController {
 		return "location/detail";
 	}
 
+	// 관광지 목록을 출력하는 코드
 	@GetMapping("list")
 	public String listLocation(@RequestParam(value = "page", defaultValue = "1") Integer page, Model model,
 			String keyword, String contentType, String sigunguCode, HttpSession session) {
@@ -59,13 +60,8 @@ public class LocationController {
 		
 		if (contentType == "") {
 			paging = lService.findLocationExceptTheme(page, keyword, sigunguCode);
-			
-			System.out.println(paging.getSize());
-			System.out.println("asdf");
 		} else {
 			paging = lService.findLocationContainTheme(page, keyword, sigunguCode, apiCode.getContentsCode(contentType));
-			//session.setAttribute("contentType", contentType);
-			
 		}
 		
 		model.addAttribute("paging", paging);
@@ -76,6 +72,7 @@ public class LocationController {
 		return "location/list";
 	}
 
+	// 지도 API 호출 테스트용
 	@GetMapping("map")
 	public String map() {
 		return "mapTest";

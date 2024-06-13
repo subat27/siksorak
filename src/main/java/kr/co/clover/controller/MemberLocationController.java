@@ -34,9 +34,9 @@ public class MemberLocationController {
 	@Autowired
 	private MemberService mService;
 
+	// 찜 목록 등록 
 	@GetMapping("insert/{locationId}")
 	public String insertLike(HttpSession session, HttpServletRequest request, @PathVariable("locationId") String locationId) {
-		
 		Member member = (Member) request.getSession(false).getAttribute("login");
 		member = mService.findByUserid(member.getUserid());
 		
@@ -49,6 +49,7 @@ public class MemberLocationController {
 		return "redirect:/";
 	}
 
+	// 찜 목록 출력
 	@GetMapping("list")
 	public String getLikeList(Model model, HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
 		
@@ -63,7 +64,8 @@ public class MemberLocationController {
 		
 		return "member_location/likes";
 	}
-	
+
+	// 찜 해놓은 장소 개수 출력
 	@GetMapping("countLikes")
 	@ResponseBody
 	public String countLikes(HttpServletRequest request) {
