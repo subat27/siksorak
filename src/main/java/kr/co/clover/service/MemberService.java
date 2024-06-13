@@ -10,82 +10,74 @@ import kr.co.clover.repository.MemberRepository;
 public class MemberService {
 	@Autowired
 	private MemberRepository mRepository;
-	
+
 	public boolean findByUseridAndPassword(Member member) {
-		
+
 		Member login = mRepository.findByUseridAndPassword(member.getUserid(), member.getPassword());
-		if(login == null) {
+		if (login == null) {
 			return false;
 		}
-		
+
 		return true;
-	}	
-	
-	
+	}
+
 	public void delete(Member member) {
 
-		Member dbMember = mRepository.findByUseridAndPassword(
-							member.getUserid(), 
-							member.getPassword());
-		
-		if(dbMember == null) {
+		Member dbMember = mRepository.findByUseridAndPassword(member.getUserid(), member.getPassword());
+
+		if (dbMember == null) {
 			throw new RuntimeException("해당 회원은 없음");
 		}
-		
+
 		mRepository.delete(dbMember);
-		
+
 	}
-	
-	
+
 	public void saveForUpdate(Member member) {
-		Member dbMember = mRepository.findByUseridAndPassword(
-													member.getUserid(), 
-													member.getPassword());
-		
-		if(dbMember == null) {
+		Member dbMember = mRepository.findByUseridAndPassword(member.getUserid(), member.getPassword());
+
+		if (dbMember == null) {
 			return;
 		}
-		
+
 		member.setCreateDate(dbMember.getCreateDate());
 		member.setId(dbMember.getId());
-		mRepository.save(member);	
-	}	
-	
-	
+		mRepository.save(member);
+	}
+
 	public Member getMemberForUpdate(String userid) {
 
 		return mRepository.findByUserid(userid);
+	}
+
+	public void save(Member member, String userid, String org_password) {
+
+		Member dbMember = mRepository.findByUseridAndPassword(userid, org_password);
+
+		if (dbMember == null) {
+			return;
 		}
-	
-	
-	public void save(Member member, String userid, 
-			String org_password) {
 
-			Member dbMember = mRepository.findByUseridAndPassword(
-									userid, 
-									org_password);
+		dbMember.setPassword(member.getPassword());
+		dbMember.setUpdateDate(member.getUpdateDate());
 
-			if(dbMember == null) {
-				return;
-			}
+		mRepository.save(dbMember);
 
-			dbMember.setPassword(member.getPassword());
-			dbMember.setUpdateDate(member.getUpdateDate());
+	}
 
-			mRepository.save(dbMember);
-
-	}	
-	
-	
 	public Member findByUserid(String userid) {
 		Member member = mRepository.findByUserid(userid);
-		
+
 		return member;
 	}
-	
+
 	public void save(Member member) {
-		
+
 		mRepository.save(member);
 	}
-	
+
+	public void findById(Integer id) {
+		mRepository.findById(id);
+	}
+
 }

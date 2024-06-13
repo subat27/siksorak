@@ -1,6 +1,5 @@
 function jjim(){
-	$(".jjimBtn").click(function(){
-		
+	$(".jjimBtn").click(function(){		
 		
 	let test = $(this).val();
 	

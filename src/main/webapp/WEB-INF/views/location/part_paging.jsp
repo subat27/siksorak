@@ -35,7 +35,7 @@ if (number > 1 && number < totalPages - 1) {
 
 
 <c:if test="${paging.hasPrevious() }">
-	<a href="/list?page=${paging.number }"></a>
+	<a href="/location/list?page=${paging.number }"></a>
 </c:if>
 
 <div class="pagenationBtn">

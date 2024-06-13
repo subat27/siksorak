@@ -78,9 +78,9 @@
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center">
 								<a class="btn btn-outline-dark mt-auto"
-									href="/test2?contentId=${location.contentid}">상세보기</a>
+									href="/location/detail?contentId=${location.contentid}">상세보기</a>
 								<a class="btn btn-outline-dark mt-auto"
-									href="#"><i class="bi-suit-heart me-1"></i></a>	
+									href="/likes/insert/${location.contentid}"><i class="bi-suit-heart me-1"></i></a>	
 								
 							</div>
 							

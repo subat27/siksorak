@@ -49,10 +49,7 @@
 			</select>
 			
 			
-			<input class="form-control me-2"
-				style="width: 65%; display: inline;" name="keyword"
-				placeholder="지역명 또는 키워드를 입력해주세요">
-
+			<input class="form-control me-2" style="width: 65%; display: inline;" name="keyword" placeholder="지역명 또는 키워드를 입력해주세요">
 			<button type="button" class="btn btn-primary col-auto">검색</button>
 		</div>
 

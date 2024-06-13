@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import domain.UtilsForBoard;
-import kr.co.clover.entity.Location;
 import kr.co.clover.entity.Member;
-import kr.co.clover.entity.MemberLocation;
-import kr.co.clover.service.MemberLocationService;
 import kr.co.clover.service.MemberService;
 import kr.co.clover.service.TestService;
 
@@ -31,28 +28,11 @@ public class MemberController {
 	@Autowired
 	private MemberService mService;
 	
-	@Autowired
-	private TestService tService;
-	
-	@Autowired
-	private MemberLocationService mlService;
-
-	
 	@GetMapping("/jjim/{test}")
 	@ResponseBody
 	public int jjim(@PathVariable("test") Integer test, HttpSession session, HttpServletRequest request){
 		
-		System.out.println();
-		
-		
-		Member member = (Member)request.getSession(false).getAttribute("login");
-		
-		MemberLocation memberLocation = new MemberLocation();
-		memberLocation.setMember(member);
-		memberLocation.setLocation(tService.findLocation(test));
-		
-		mlService.insertJjim(memberLocation);
-		
+				
 		return test;
 	}	
 	
@@ -72,7 +52,13 @@ public class MemberController {
 	
 	@GetMapping("/login")
 	public void login() {
+	}	
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
 		
+		return "redirect:/";
 	}	
 	
 	@GetMapping("/check/{userid}")

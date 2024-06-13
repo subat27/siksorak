@@ -24,9 +24,9 @@
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">테마별</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="/list?contentType=음식">음식</a></li>
-							<li><a class="dropdown-item" href="/list?contentType=명소">명소</a></li>
-							<li><a class="dropdown-item" href="/list?contentType=오락">오락</a></li>
+							<li><a class="dropdown-item" href="/location/list?contentType=음식">음식</a></li>
+							<li><a class="dropdown-item" href="/location/list?contentType=명소">명소</a></li>
+							<li><a class="dropdown-item" href="/location/list?contentType=오락">오락</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
@@ -74,19 +74,17 @@
 				</c:when>	
 				<c:otherwise>	
 				<form class="d-flex">
-					<button class="btn btn-outline-dark" type="submit">
+					<button class="btn btn-outline-dark likes-list-btn" type="button">
 						<i class="bi-suit-heart-fill me-1"></i> 찜목록 <span
-							class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+							class="badge bg-dark text-white ms-1 rounded-pill likes-count">0</span>
 					</button>
 				</form>
 				</c:otherwise>
 				</c:choose>
-				<form class="d-flex">
-					<button class="btn btn-outline-dark" type="submit">
-						<i class="bi-suit-heart-fill me-1"></i> 찜목록 <span
-							class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-					</button>
-				</form>
+				
+				<div class="d-flex">
+					<i class="bi-brightness-high-fill"></i> 온도
+				</div>
 			</div>
 		</div>
 	</nav>
