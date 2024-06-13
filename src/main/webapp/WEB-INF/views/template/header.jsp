@@ -32,14 +32,11 @@
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">지역별</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<c:forEach items="" var="sigungu">
-								<li><a class="dropdown-item" href="/list?sigunguCode=강동구">강동구</a></li>						
-							
+							<li><a class="dropdown-item" href="/list?sigunguCode=강동구">강동구</a></li>						
 							<li><a class="dropdown-item" href="#!">중랑구</a></li>
 							<li><hr class="dropdown-divider" /></li>
 							<li><a class="dropdown-item" href="#!">강서구</a></li>
 							<li><a class="dropdown-item" href="#!">강남구</a></li>
-							</c:forEach>
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" aria-current="page"
 						href="#!">진행중인 축제/행사</a></li>
