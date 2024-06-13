@@ -10,7 +10,7 @@
 <%@ include file="template/header.jsp"%>
 
 
-<div class="bg-dark py-5">
+<div class="bg-dark py-5" style="height: 600px;">
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="text-center text-white">
 			<h1 class="display-4 fw-bolder">추천 관광지 이미지</h1>
@@ -20,14 +20,18 @@
 </div>
 
 <!-- Icons Grid-->
-<section class="features-icons bg-light text-center">
+<section class="features-icons bg-light text-center" style="padding: 50 
+
+
+
+px 0;">
 	<div class="container">
 		<div class="row">
 			<!-- 이 div 태그를 누르면 먹거리 화면으로 연결 -->
 			<div class="col-lg-4">
 				<div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
 					<div class="features-icons-icon d-flex">
-						<i class="bi-window m-auto text-primary"></i>
+						<img class="m-auto text-primary" src="/image/1.png"></img>
 					</div>
 					<h3>음식</h3>
 				</div>
