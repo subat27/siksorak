@@ -36,6 +36,7 @@ public class MemberLocationController {
 
 	// 찜 목록 등록 
 	@GetMapping("insert/{locationId}")
+	@ResponseBody
 	public String insertLike(HttpSession session, HttpServletRequest request, @PathVariable("locationId") String locationId) {
 		Member member = (Member) request.getSession(false).getAttribute("login");
 		member = mService.findByUserid(member.getUserid());
@@ -46,9 +47,23 @@ public class MemberLocationController {
 		
 		mlService.insertJjim(memberLocation);
 		
-		return "redirect:/";
+		return "{\"result\" : \"success\"}";
 	}
 
+	// 찜 목록에서 제거 
+	@GetMapping("delete/{locationId}")
+	@ResponseBody
+	public String deleteLike(HttpSession session, HttpServletRequest request, @PathVariable("locationId") String locationId) {
+		Member member = (Member) request.getSession(false).getAttribute("login");
+		member = mService.findByUserid(member.getUserid());
+		
+		MemberLocation memberLocation = new MemberLocation();
+		memberLocation.setLocationId(locationId);
+		memberLocation.setMemberId(member.getId());
+		
+		return mlService.deleteJjim(memberLocation);
+	}
+	
 	// 찜 목록 출력
 	@GetMapping("list")
 	public String getLikeList(Model model, HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") Integer page) {
@@ -74,7 +89,27 @@ public class MemberLocationController {
 		
 		int count = mlService.countByMemberId(member.getId());
 		
-		return "" + count;
+		return "{\"result\" : \"" + count + "\"}";
 	}
 
+	// 관광지를 찜 해놓은 유저의 수를 출력
+	@GetMapping("countMembers/{locationId}")
+	@ResponseBody
+	public String countUsers(HttpServletRequest request, @PathVariable("locationId") String locationId) {
+		int count = mlService.countByLocationId(locationId);		
+		return "{\"result\" : \"" + count + "\"}";
+	}
+
+	// 찜 목록 가져오기
+	@GetMapping("getList")
+	@ResponseBody
+	public String getList(HttpServletRequest request) {
+		
+		Member member = (Member) request.getSession(false).getAttribute("login");
+		member = mService.findByUserid(member.getUserid());
+		
+		List<String> locationIdList = mlService.findByMemberId(member.getId());
+				
+		return "{\"result\" : \"" + locationIdList + "\"}";
+	}
 }

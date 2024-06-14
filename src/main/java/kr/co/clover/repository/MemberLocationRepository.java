@@ -14,7 +14,9 @@ public interface MemberLocationRepository extends JpaRepository<MemberLocation, 
 
 	@Query("SELECT ml.locationId FROM MemberLocation ml where ml.memberId IN :memberId")
 	List<String> findLocationIdByMemberId(@Param("memberId") Integer memberId);
-
+	
 	int countByMemberId(Integer memberId);
+	
+	int countByLocationId(String locationId);
 
 }
