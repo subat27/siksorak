@@ -94,21 +94,14 @@
 				<c:when test="${empty login}">
 				</c:when>	
 				<c:otherwise>	
-<<<<<<< HEAD
 				<form class="d-flex">
 					<button class="btn btn-outline-dark likes-list-btn" type="button">
-=======
-				<form class="d-flex" action="/jjim" method="GET">
-					<button class="btn btn-outline-dark" type="submit">
->>>>>>> f1e48c7 (jjim 중도 포기)
 						<i class="bi-suit-heart-fill me-1"></i> 찜목록 <span
 							class="badge bg-dark text-white ms-1 rounded-pill likes-count">0</span>
 					</button>
 				</form>
 				</c:otherwise>
 				</c:choose>
-				
-				
 			</div>
 		</div>
 	</nav>
