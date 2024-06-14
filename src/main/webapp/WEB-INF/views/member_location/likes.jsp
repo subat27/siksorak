@@ -119,7 +119,9 @@
 			</div>
 
 		</div>
-
+		<div class="d-flex justify-content-center">
+			<jsp:include page="part_paging.jsp" />
+		</div>
 	</div>
 
 

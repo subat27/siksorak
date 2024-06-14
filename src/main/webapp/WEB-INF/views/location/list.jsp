@@ -79,8 +79,8 @@
 							<div class="text-center">
 								<a class="btn btn-outline-dark mt-auto"
 									href="/location/detail?contentId=${location.contentid}">상세보기</a>
-								<a class="btn btn-outline-dark mt-auto"
-									href="/likes/insert/${location.contentid}"><i class="bi-suit-heart me-1"></i></a>	
+								<button class="btn btn-outline-dark mt-auto addLikeListBtn"
+								data-contentId="${location.contentid}"><i class="bi-suit-heart" style="color: red;"></i><span></span></button>	
 								
 							</div>
 							

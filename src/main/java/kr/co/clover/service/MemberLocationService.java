@@ -27,6 +27,15 @@ public class MemberLocationService {
 	public int countByMemberId(Integer memberid) {
 		return mlRepository.countByMemberId(memberid);
 	}
+
+	// 찜 목록에서 삭제
+	public String deleteJjim(MemberLocation memberLocation) {
+		mlRepository.delete(memberLocation);
+		return "delete";
+	}
 	
-	// 관광지별 찜 목록 개수 출력 (추가예정)
+	// 관광지별 찜 목록 개수 출력
+	public int countByLocationId(String locationId) {
+		return mlRepository.countByLocationId(locationId);
+	}
 }
