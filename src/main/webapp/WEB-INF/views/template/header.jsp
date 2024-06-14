@@ -4,21 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<style>
-@font-face {
-    font-family: 'Freesentation-9Black';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2') format('woff2');
-    font-weight: 900;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Freesentation-1Thin';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-1Thin.woff2') format('woff2');
-    font-weight: 100;
-    font-style: normal;
-}
-</style>
-
 </head>
 <body>
 	<!-- Navigation-->
@@ -80,7 +65,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="nav-item"><a class="nav-link" aria-current="page"
-							href="/member/detail/${login.userid}">My</a></li>						
+							href="/member/detail/${login.userid}">My</a></li>					
 						</c:otherwise>
 					</c:choose>							
 
@@ -102,8 +87,96 @@
 				</form>
 				</c:otherwise>
 				</c:choose>
-				
-				
 			</div>
+<!-- 구글 번역 API -->
+			<style>
+			#google_translate_element>div>div {
+				position: relative;
+				min-width: 200px;
+				height: 10px;
+			}
+			
+			#google_translate_element>div>div>select::-ms-expand {
+				display: none;
+			}
+			
+			#google_translate_element>div>div:after {
+				content: '>'; /* 목록 펼침 아이콘 */
+				font: 20px "Consolas", monospace;
+				color: #333;
+				transform: rotate(90deg);
+				right: 11px;
+				top: 8px;
+				padding: 0 0 2px;
+				border-bottom: 1px solid #999;
+				position: absolute;
+				pointer-events: none;
+			}
+			
+			#google_translate_element>div>div>select {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				display: block;
+				width: 100%;
+				max-width: 320px;
+				height: 30px;
+				float: right;
+				margin: 5px 0px;
+				padding: 0px 24px;
+				font-size: 16px;
+				line-height: 1.75;
+				color: #333;
+				border: 1px solid #cccccc;
+				-ms-word-break: normal;
+				word-break: normal;
+				border-radius: 10px;
+			}
+			</style>
+			<ul><div id="google_translate_element"></div></ul>
+			<script
+				src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+			<script type="text/javascript">
+				function googleTranslateElementInit() {
+					new google.translate.TranslateElement({
+						pageLanguage : 'ko',
+						autoDisplay : false
+					}, 'google_translate_element');
+				}
+				
+			    // 페이지 로드 시에 초기화
+			    window.onload = function() {
+			        initTranslationTool(); // 페이지 로드 시 초기화
+			        initializePageChangeDetection(); // 페이지 이동 감지 초기화
+			    };
+
+				// 페이지 이동 시에도 번역 도구를 유지하는 함수
+				function initTranslationTool() {
+					if (typeof google !== 'undefined'
+							&& typeof google.translate !== 'undefined') {
+						googleTranslateElementInit();
+					} else {
+						setTimeout(initTranslationTool, 500); // 500ms마다 확인
+					}
+				}
+
+			    // 페이지 이동 감지 초기화
+			    function initializePageChangeDetection() {
+			        // 페이지 이동 시 History API를 사용하여 페이지 변경 감지
+			        window.onpopstate = function(event) {
+			            initTranslationTool(); // 페이지 변경 시 번역 도구 다시 초기화
+			        };
+			    }
+
+			    // 페이지 이동 시에도 History API를 사용하여 이동 이력을 관리하여 브라우저 히스토리에 기록
+			    function navigateTo(url) {
+			        window.history.pushState(null, null, url);
+			        initTranslationTool(); // 페이지 이동 시 번역 도구 다시 초기화
+			    }
+			</script>
+<!-- 구글 번역 API 끝 -->
+
 		</div>
+
 	</nav>
+

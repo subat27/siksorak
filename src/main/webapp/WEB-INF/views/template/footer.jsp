@@ -55,8 +55,8 @@
 		
 		/* 메인화면에서 테마 선택 */
 		$("div.col-lg-4").click(function() {
-			var contentType = $(this).find('h3').html();
-			location.href = "/location/list?sigunguCode=" + sigunguCode + "&keyword=" + keyword + "&contentType=" + contentType;			
+			var contentType = $(this).find('h3').attr("data-contentName");
+			location.href = "/location/list?sigunguCode=" + sigunguCode + "&keyword=" + keyword + "&contentType=" + contentType;
 		});
 
 		/* 지역 선택 유지 */
@@ -68,7 +68,7 @@
 		if (contentType != "") {
 			$("#contentTypeSelect").val("${contentType}");
 		}
-		
+
 		/* 지역 선택 */
 		$("#sigunguCodeSelect").change(function(){
 			var sigunguCode = $("#sigunguCodeSelect").val();

@@ -149,4 +149,10 @@ public class TestService {
 		return jsonArray.toList();
 	}
 
+	public Location findLocation(Integer test) {
+		
+		return lRepository.findById(test).get();
+	}
+
+
 }
