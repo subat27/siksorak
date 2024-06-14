@@ -23,6 +23,7 @@
 <!-- Bootstrap core JS-->
 <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="/js/member.js"></script>
+<script type="text/javascript" src="/js/weather.js"></script>
 <!-- Core theme JS-->
 <script src="/js/main_page_scripts.js"></script>
 <script type="text/javascript">
@@ -31,8 +32,6 @@
 		var contentType = "${contentType}";
 		var keyword = "${keyword}";
 		var login = "${login}";
-		
-		
 		
 		/* 찜목록 숫자 갱신 */
 		if (login != ""){
@@ -87,7 +86,8 @@
 			location.href = "/likes/list"
 		});
 		
-		
+		/* 현재 날씨 상태 출력 */
+		setWeatherCondition();
 	});
 </script>
 

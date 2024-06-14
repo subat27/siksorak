@@ -6,26 +6,31 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import kr.co.clover.entity.WeatherInfo;
+
+
+
 @Service
 public class WeatherService {
-	public String callAPI(String key) throws IOException {
-		LocalDateTime now = LocalDateTime.now();
-		String date = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-		String time = now.format(DateTimeFormatter.ofPattern("HHmm"));
+	// 단기예보 결과
+	public Map<String, WeatherInfo> getVilageFcst(String apiKey, String date) throws IOException {
 		
 		StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"); /* URL */
-		urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=" + key); /* Service Key */
+		urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=" + apiKey); /* Service Key */
 		urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("1000", "UTF-8")); /* 한 페이지 결과 수 */
 		urlBuilder.append("&" + URLEncoder.encode("dataType", "UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /* response type 설정 */
 		urlBuilder.append("&" + URLEncoder.encode("base_date", "UTF-8") + "=" + URLEncoder.encode(date, "UTF-8"));
-		urlBuilder.append("&" + URLEncoder.encode("base_time", "UTF-8") + "=" + URLEncoder.encode(time, "UTF-8"));
+		urlBuilder.append("&" + URLEncoder.encode("base_time", "UTF-8") + "=" + URLEncoder.encode("0500", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("nx", "UTF-8") + "=" + URLEncoder.encode("37", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("ny", "UTF-8") + "=" + URLEncoder.encode("127", "UTF-8"));
 
@@ -50,11 +55,35 @@ public class WeatherService {
 		rd.close();
 		conn.disconnect();
 		
-		JSONObject jsonObject = new JSONObject(sb.toString());
-		JSONArray jsonArray = jsonObject.getJSONObject("response").getJSONObject("body").getJSONObject("items").getJSONArray(("item"));
+		System.out.println(sb.toString());
 		
-		System.out.println(jsonArray);
+		ObjectMapper mapper = new ObjectMapper();
+		JSONObject jsonObject = new JSONObject(sb.toString()); 
+		String jsonString = jsonObject.getJSONObject("response").getJSONObject("body")
+		.getJSONObject("items").getJSONArray(("item")).toString();
+			
+		List<Map<String, Object>> rawData = mapper.readValue(jsonString, new TypeReference<List<Map<String, Object>>>() {});
+	    Map<String, WeatherInfo> organizedData = new HashMap<>();
 		
-		return "";
+		for(Map<String, Object> entry : rawData) {
+			String fcstDate = (String) entry.get("fcstDate");
+			String fcstTime = (String) entry.get("fcstTime");
+			String category = (String) entry.get("category");
+			String fcstValue = String.valueOf(entry.get("fcstValue"));
+			
+			String key = fcstDate + fcstTime;
+			organizedData.putIfAbsent(key, new WeatherInfo());
+			WeatherInfo weatherInfo = organizedData.get(key);
+			
+			weatherInfo.setFcstDate(fcstDate);
+			weatherInfo.setFcstTime(fcstTime);
+			if (weatherInfo.getCategories() == null) {
+				weatherInfo.setCategories(new HashMap<>());
+			}
+			weatherInfo.getCategories().put(category, fcstValue);
+		}
+		
+		return organizedData;
 	}
+	
 }

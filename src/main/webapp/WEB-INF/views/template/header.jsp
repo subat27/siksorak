@@ -4,11 +4,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<style>
+@font-face {
+    font-family: 'Freesentation-9Black';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Freesentation-1Thin';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-1Thin.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+}
+</style>
+
 </head>
 <body>
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container px-4 px-lg-5">
+
 			<a class="navbar-brand" href="/" style="font-family: 'Freesentation-6SemiBold'; font-weight: 100;">식소락 </a>
 			<!-- 웹페이지 사이즈가 작아 졌을 때 햄버거 버튼으로 변환 -->
 			<button class="navbar-toggler" type="button"
@@ -69,6 +85,11 @@
 					</c:choose>							
 
 				</ul>
+				<div class="d-flex">
+					<i id="weather_condition"></i>
+					<label id="weather_tmp"></label>					
+				</div>
+				
 				<c:choose>
 				<c:when test="${empty login}">
 				</c:when>	
@@ -82,9 +103,7 @@
 				</c:otherwise>
 				</c:choose>
 				
-				<div class="d-flex">
-					<i class="bi-brightness-high-fill"></i> 온도
-				</div>
+				
 			</div>
 		</div>
 	</nav>
