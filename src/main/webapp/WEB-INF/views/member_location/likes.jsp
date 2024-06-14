@@ -11,10 +11,10 @@
 <!-- Section-->
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-2">
-		<h3>관광지 목록</h3>
+		<h3>찜 목록</h3>
 		<div class="row g-3 mb-3">
 			<select class="form-select me-2" style="width: 25%; display: inline;" id="sigunguCodeSelect">
-				<option value="" selected>지역명</option>
+				<option selected>지역명</option>
 				<option value="강남구">강남구</option>
 				<option value="강동구">강동구</option>
 				<option value="강북구">강북구</option>
@@ -42,15 +42,15 @@
 				<option value="중랑구">중랑구</option>
 			</select>
 			<select class="form-select me-2" style="width: 25%; display: inline;" id="contentTypeSelect">
-				<option value="" selected>테마명</option>
+				<option selected>테마명</option>
 				<option value="음식">음식</option>
 				<option value="명소">명소</option>
 				<option value="오락">오락</option>
 			</select>
 			
 			
-			<input class="form-control me-2 keywordValue" style="width: 65%; display: inline;" placeholder="지역명 또는 키워드를 입력해주세요">
-			<button type="button" class="btn btn-primary col-auto keywordSearch">검색</button>
+			<input class="form-control me-2" style="width: 65%; display: inline;" name="keyword" placeholder="지역명 또는 키워드를 입력해주세요">
+			<button type="button" class="btn btn-primary col-auto">검색</button>
 		</div>
 
 
@@ -78,10 +78,27 @@
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center">
 								<a class="btn btn-outline-dark mt-auto"
-									href="/location/detail?contentId=${location.contentid}">상세보기</a>
-								<a class="btn btn-outline-dark mt-auto"
-									href="/likes/insert/${location.contentid}"><i class="bi-suit-heart me-1"></i></a>	
-								
+									href="/test2?contentId=${location.contentid}">상세보기</a>
+
+
+								<c:choose>
+									<c:when test="${empty login}">
+										<button id="jjimBtn" type="button"
+											class="btn btn-outline-dark mt-auto" name="jjimBtn">
+											<i class="bi-suit-heart me-1">찜 수</i>
+										</button>
+
+									</c:when>
+									<c:otherwise>
+										<button id="jjimBtn" type="button"
+											class="btn btn-outline-dark mt-auto jjimBtn" name="jjimBtn"
+											value="${location.id}">
+											<i class="bi-suit-heart me-1">찜 수</i>
+										</button>
+									</c:otherwise>
+								</c:choose>
+
+
 							</div>
 							
 						</div>
@@ -91,11 +108,11 @@
 
 		</div>
 		<div class="d-flex justify-content-center">
-			<jsp:include page="part_paging.jsp" />
+			<jsp:include page="../location/part_paging.jsp" />
 		</div>
 	</div>
+	
 
 </section>
-
 <%@ include file="../template/footer.jsp"%>
 

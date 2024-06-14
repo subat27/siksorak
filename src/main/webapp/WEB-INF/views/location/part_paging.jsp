@@ -35,18 +35,18 @@ if (number > 1 && number < totalPages - 1) {
 
 
 <c:if test="${paging.hasPrevious() }">
-	<a href="/list?page=${paging.number }"></a>
+	<a href="/location/list?page=${paging.number }"></a>
 </c:if>
 
-<div>
+<div class="pagenationBtn">
 	<button class="moveBtn btn btn-light" data-dest="${prevPage }">이전</button>
 	<c:forEach begin="${beginPageNum}" end="${endPageNum}" var="page">
 		<c:choose>
 			<c:when test="${paging.getNumber()+1 == page}">
-				<a class="btn btn-primary" href="/list?page=${page}&keyword=${keyword }">${page}</a>
+				<button class="btn btn-primary pageBtn" data-dest="${page}">${page}</button>
 			</c:when>
 			<c:otherwise>
-				<a class="btn btn-secondary" href="/list?page=${page}&keyword=${keyword }">${page}</a>
+				<button class="btn btn-secondary pageBtn"  data-dest="${page}">${page}</button>
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>

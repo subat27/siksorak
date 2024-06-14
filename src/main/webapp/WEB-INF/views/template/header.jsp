@@ -4,11 +4,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<style>
+@font-face {
+    font-family: 'Freesentation-9Black';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Freesentation-1Thin';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-1Thin.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+}
+</style>
+
 </head>
 <body>
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container px-4 px-lg-5">
+
 			<a class="navbar-brand" href="/" style="font-family: 'Freesentation-6SemiBold'; font-weight: 100;">식소락 </a>
 			<!-- 웹페이지 사이즈가 작아 졌을 때 햄버거 버튼으로 변환 -->
 			<button class="navbar-toggler" type="button"
@@ -24,9 +40,9 @@
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">테마별</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="/list?contentType=음식">음식</a></li>
-							<li><a class="dropdown-item" href="/list?contentType=명소">명소</a></li>
-							<li><a class="dropdown-item" href="/list?contentType=오락">오락</a></li>
+							<li><a class="dropdown-item" href="/location/list?contentType=음식">음식</a></li>
+							<li><a class="dropdown-item" href="/location/list?contentType=명소">명소</a></li>
+							<li><a class="dropdown-item" href="/location/list?contentType=오락">오락</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
@@ -69,18 +85,25 @@
 					</c:choose>							
 
 				</ul>
+				<div class="d-flex">
+					<i id="weather_condition"></i>
+					<label id="weather_tmp"></label>					
+				</div>
+				
 				<c:choose>
 				<c:when test="${empty login}">
 				</c:when>	
 				<c:otherwise>	
 				<form class="d-flex">
-					<button class="btn btn-outline-dark" type="submit">
+					<button class="btn btn-outline-dark likes-list-btn" type="button">
 						<i class="bi-suit-heart-fill me-1"></i> 찜목록 <span
-							class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+							class="badge bg-dark text-white ms-1 rounded-pill likes-count">0</span>
 					</button>
 				</form>
 				</c:otherwise>
 				</c:choose>
+				
+				
 			</div>
 		</div>
 	</nav>

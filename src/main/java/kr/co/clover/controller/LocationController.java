@@ -15,74 +15,64 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.co.clover.entity.ApiCode;
 import kr.co.clover.entity.Location;
 import kr.co.clover.service.ApiService;
-import kr.co.clover.service.TestService;
+import kr.co.clover.service.LocationService;
 
 @Controller
-@RequestMapping("/")
-public class TestController {
-
-	@Autowired
-	private TestService tService;
+@RequestMapping("/location")
+public class LocationController {
 
 	@Autowired
 	private ApiService apiService;
-
-	@GetMapping("location")
-	public String location() {
-		return "location/list";
-	}
-
-	@GetMapping("test")
+	
+	@Autowired
+	private LocationService lService;
+	
+	// api로 서울 관광지 정보를 가져와서 DB에 저장 
+	@GetMapping("insert")
 	public String test() {
-
 		try {
-			tService.insertItems(tService.callAPI(apiService.getTourApiKey()));
+			lService.insertItems(apiService.getSeoulLocationData());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		;
-
 		return "index";
 	}
 
-	@GetMapping("test2")
-	public String test2(String contentId, Model model) {
+	// 상세 페이지로 이동
+	@GetMapping("detail")
+	public String detail(String contentId, Model model) {
 		try {
-			model.addAttribute("details", tService.detailContent(contentId, apiService.getTourApiKey()));
+			model.addAttribute("details", apiService.detailContent(contentId));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return "location/detail";
 	}
 
+	// 관광지 목록을 출력하는 코드
 	@GetMapping("list")
 	public String listLocation(@RequestParam(value = "page", defaultValue = "1") Integer page, Model model,
 			String keyword, String contentType, String sigunguCode, HttpSession session) {
 		page -= 1;
 		
 		Page<Location> paging = null;
+		ApiCode apiCode = new ApiCode();
 		
-		if (keyword != null) {
-			paging = tService.findByKeyword(page, keyword);
-		} else if (contentType != null) {
-			ApiCode apiCode = new ApiCode();
-			System.out.println(apiCode.getContentsCode(contentType));
-			paging = tService.findByContentType(page, apiCode.getContentsCode(contentType));
-			session.setAttribute("contentType", contentType);
-		} else if (sigunguCode != null) {
-			ApiCode apiCode = new ApiCode();
-			System.out.println(apiCode.getSigunguCode(sigunguCode));
-			paging = tService.findBySigungucode(page, apiCode.getSigunguCode(sigunguCode));
-			session.setAttribute("sigunguCode", sigunguCode);
+		if (contentType == "") {
+			paging = lService.findLocationExceptTheme(page, keyword, sigunguCode);
 		} else {
-			paging = tService.findAll(page);
+			paging = lService.findLocationContainTheme(page, keyword, sigunguCode, apiCode.getContentsCode(contentType));
 		}
 		
 		model.addAttribute("paging", paging);
-		model.addAttribute("keyword", keyword);
+		session.setAttribute("keyword", keyword);
+		session.setAttribute("sigunguCode", sigunguCode);
+		session.setAttribute("contentType", contentType);
+		
 		return "location/list";
 	}
 
+	// 지도 API 호출 테스트용
 	@GetMapping("map")
 	public String map() {
 		return "mapTest";

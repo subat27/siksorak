@@ -26,7 +26,7 @@ public class Location {
 	private String addr1;
 	private String addr2;
 	private Integer areacode;
-	private Integer sigungucode;
+	private String sigungucode;
 	private String cat1;
 	private String cat2;
 	private String cat3;
@@ -44,5 +44,5 @@ public class Location {
 	private String booktour;
 	private String mlevel;
 	private String cpyrhtDivCd;
-
+	
 }

@@ -56,8 +56,12 @@ public class ApiCode {
 		
 	}
 	
-	public Integer getSigunguCode(String key) {
-		return sigunguCode.get(key);
+	public String getSigunguCode(String key) {
+		Integer result = sigunguCode.get(key);
+		if (result == null) {
+			return "";
+		}
+		return result.toString();
 	}
 	
 	public List<String> getContentsCode(String key){
