@@ -12,7 +12,6 @@
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-2">
 		<h3>찜 목록</h3>
-<<<<<<< HEAD:src/main/webapp/WEB-INF/views/member_location/likes.jsp
 		<div class="row g-3 mb-3">
 			<select class="form-select me-2" style="width: 25%; display: inline;" id="sigunguCodeSelect">
 				<option selected>지역명</option>
@@ -54,10 +53,7 @@
 			<button type="button" class="btn btn-primary col-auto">검색</button>
 		</div>
 
-=======
->>>>>>> f1e48c7 (jjim 중도 포기):src/main/webapp/WEB-INF/views/member_location/jjim.jsp
-
-		
+	
 		<div
 			class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 			<c:forEach items="${paging.content}" var="location">

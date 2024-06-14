@@ -29,5 +29,4 @@
 </form>
 </div>
 
-</body>
-</html>
+<%@ include file="/WEB-INF/views/template/footer.jsp" %>

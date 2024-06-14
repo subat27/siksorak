@@ -47,9 +47,9 @@ px 0;">
 			</div>
 			<!-- 이 div 태그를 누르면 즐길거리 화면으로 연결 -->
 			<div class="col-lg-4">
-				<div class="features-icons-item mx-auto mb-0 mb-lg-3">
-					<div class="features-icons-icon d-flex">
-						<i class="bi-terminal m-auto text-primary"></i>
+				<div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+					<div class="features-icons-icon d-flex" style="margin-bottom: 20px !important;">
+                     <img class="m-auto text-primary" src="/image/3.png"></img>
 					</div>
 					<h3 data-contentName="오락">오락</h3>
 				</div>
