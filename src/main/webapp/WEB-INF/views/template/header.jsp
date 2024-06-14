@@ -9,7 +9,7 @@
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container px-4 px-lg-5">
-			<a class="navbar-brand" href="/">식소락</a>
+			<a class="navbar-brand" href="/" style="font-family: 'Freesentation-6SemiBold'; font-weight: 100;">식소락 </a>
 			<!-- 웹페이지 사이즈가 작아 졌을 때 햄버거 버튼으로 변환 -->
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

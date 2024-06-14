@@ -21,8 +21,17 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
 	rel="stylesheet" type="text/css" />
 <!-- Google fonts-->
-<link
-	href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
-	rel="stylesheet" type="text/css" />
+<link href="" rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link rel="stylesheet" href="/css/bootstrap.min.css" />
+
+<style type="text/css">
+@font-face {
+	font-family: 'Freesentation-6SemiBold';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-6SemiBold.woff2')
+		format('woff2');
+	font-weight: 600;
+	font-style: normal;
+}
+</style>

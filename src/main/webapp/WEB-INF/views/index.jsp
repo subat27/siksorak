@@ -30,8 +30,8 @@ px 0;">
 			<!-- 이 div 태그를 누르면 먹거리 화면으로 연결 -->
 			<div class="col-lg-4">
 				<div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-					<div class="features-icons-icon d-flex">
-						<img class="m-auto text-primary" src="/image/1.png"></img>
+					<div class="features-icons-icon d-flex" style="margin-bottom: 20px !important;">
+                     <img class="m-auto text-primary" src="/image/1.png"></img>
 					</div>
 					<h3>음식</h3>
 				</div>
@@ -39,18 +39,18 @@ px 0;">
 			<!-- 이 div 태그를 누르면 볼거리 화면으로 연결 -->
 			<div class="col-lg-4">
 				<div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-					<div class="features-icons-icon d-flex">
-						<i class="bi-layers m-auto text-primary"></i>
+					<div class="features-icons-icon d-flex" style="margin-bottom: 20px !important;">
+                     <img class="m-auto text-primary" src="/image/2.png"></img>
 					</div>
 					<h3>명소</h3>
 				</div>
 			</div>
 			<!-- 이 div 태그를 누르면 즐길거리 화면으로 연결 -->
-			<div class="col-lg-4">
-				<div class="features-icons-item mx-auto mb-0 mb-lg-3">
-					<div class="features-icons-icon d-flex">
-						<i class="bi-terminal m-auto text-primary"></i>
-					</div>
+		<div class="col-lg-4">
+				<div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+					<div class="features-icons-icon d-flex" style="margin-bottom: 20px !important;">
+                     <img class="m-auto text-primary" src="/image/3.png"></img>
+                     </div>
 					<h3>오락</h3>
 				</div>
 			</div>
