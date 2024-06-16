@@ -1,9 +1,10 @@
 package kr.co.clover.entity;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -19,11 +20,15 @@ import lombok.Setter;
 @AllArgsConstructor
 public class MemberLocation {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-    
-	private Integer memberId;
-    private String locationId;
+	@EmbeddedId
+	private MemberLocationId id;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@MapsId("memberId")
+	private Member member;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@MapsId("contentid")
+    private Location location;
 	
 }
