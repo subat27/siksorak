@@ -6,9 +6,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
@@ -31,7 +31,7 @@ public class WeatherService {
 		urlBuilder.append("&" + URLEncoder.encode("dataType", "UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /* response type 설정 */
 		urlBuilder.append("&" + URLEncoder.encode("base_date", "UTF-8") + "=" + URLEncoder.encode(date, "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("base_time", "UTF-8") + "=" + URLEncoder.encode("0500", "UTF-8"));
-		urlBuilder.append("&" + URLEncoder.encode("nx", "UTF-8") + "=" + URLEncoder.encode("37", "UTF-8"));
+		urlBuilder.append("&" + URLEncoder.encode("nx", "UTF-8") + "=" + URLEncoder.encode("60", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("ny", "UTF-8") + "=" + URLEncoder.encode("127", "UTF-8"));
 
 		System.out.println(urlBuilder.toString());
@@ -63,7 +63,7 @@ public class WeatherService {
 		.getJSONObject("items").getJSONArray(("item")).toString();
 			
 		List<Map<String, Object>> rawData = mapper.readValue(jsonString, new TypeReference<List<Map<String, Object>>>() {});
-	    Map<String, WeatherInfo> organizedData = new HashMap<>();
+	    Map<String, WeatherInfo> organizedData = new TreeMap<>();
 		
 		for(Map<String, Object> entry : rawData) {
 			String fcstDate = (String) entry.get("fcstDate");
@@ -78,7 +78,7 @@ public class WeatherService {
 			weatherInfo.setFcstDate(fcstDate);
 			weatherInfo.setFcstTime(fcstTime);
 			if (weatherInfo.getCategories() == null) {
-				weatherInfo.setCategories(new HashMap<>());
+				weatherInfo.setCategories(new TreeMap<>());
 			}
 			weatherInfo.getCategories().put(category, fcstValue);
 		}
