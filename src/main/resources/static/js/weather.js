@@ -12,17 +12,15 @@ function setWeatherCondition() {
 				$("#weather_condition").attr("class",  "bi-cloud-fog-fill");
 			}
 		} else if (data.PTY == 1) {
-			$("#weather_condition").attr("class") = "bi-cloud-rain-fill";
+			$("#weather_condition").attr("class", "bi-cloud-rain-fill");
 		} else if (data.PTY == 2){
-			$("#weather_condition").attr("class") = "bi-cloud-sleet-fill";
+			$("#weather_condition").attr("class", "bi-cloud-sleet-fill");
 		} else if (data.PTY == 3){
-			$("#weather_condition").attr("class") = "bi-cloud-snow-fill";
+			$("#weather_condition").attr("class", "bi-cloud-snow-fill");
 		} else {
-			$("#weather_condition").attr("class") = "bi-cloud-rain-heavy-fill";
+			$("#weather_condition").attr("class", "bi-cloud-rain-heavy-fill");
 		}
 
 		$("#weather_tmp").html(data.TMP + "℃");
 	});
-	
-	
 }

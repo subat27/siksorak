@@ -41,8 +41,10 @@ public class LocationController {
 	// 상세 페이지로 이동
 	@GetMapping("detail")
 	public String detail(String contentId, Model model) {
+		String contentTypeId = lService.findLocation(contentId).getContenttypeid();
 		try {
 			model.addAttribute("details", apiService.detailContent(contentId));
+			model.addAttribute("details2", apiService.detailContent2(contentId, contentTypeId));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -70,6 +72,19 @@ public class LocationController {
 		session.setAttribute("contentType", contentType);
 		
 		return "location/list";
+	}
+	
+	// 진행중인 축제 목록을 출력하는 코드
+	@GetMapping("eventList")
+	public String listEventLocation(@RequestParam(value = "page", defaultValue = "1") Integer page, Model model,
+			String sigunguCode, HttpSession session) {
+		page -= 1;
+		
+		Page<Location> paging = null;
+		
+		
+		
+		return "location/eventList";
 	}
 
 	// 지도 API 호출 테스트용

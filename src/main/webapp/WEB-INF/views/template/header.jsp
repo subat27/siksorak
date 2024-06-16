@@ -75,40 +75,41 @@
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">테마별</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item"
-								href="/location/list?contentType=음식">음식</a></li>
+								href="/location/list?contentType=음식&sigunguCode=&keyword=">음식</a></li>
 							<li><a class="dropdown-item"
-								href="/location/list?contentType=명소">명소</a></li>
+								href="/location/list?contentType=명소&sigunguCode=&keyword=">명소</a></li>
 							<li><a class="dropdown-item"
-								href="/location/list?contentType=오락">오락</a></li>
+								href="/location/list?contentType=오락&sigunguCode=&keyword=">오락</a></li>
+							<li><a class="dropdown-item" href="/event/list">진행중인 축제/행사</a></li>
 						</ul></li>
 
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
-						role="button" data-bs-toggle="dropdown" aria-expanded="false">내
-							정보</a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<c:choose>
-								<c:when test="${empty login}">
-									<li><a class="dropdown-item" aria-current="page"
-										href="/member/login">로그인</a></li>
-									<li><a class="dropdown-item" aria-current="page"
-										href="/member/insert">회원가입</a></li>
-								</c:when>
-								<c:otherwise>
-									<li><a class="dropdown-item" aria-current="page"
-										href="/member/logout">로그아웃</a></li>
-									<li><a class="dropdown-item" aria-current="page"
-										href="/member/detail/${login.userid}">My</a></li>
-								</c:otherwise>
-							</c:choose>
-						</ul></li>
 
 					<li class="nav-item"><a class="nav-link" aria-current="page"
-						href="#!">진행중인 축제/행사</a></li>
-					<li class="nav-item"><a class="nav-link" aria-current="page"
-						href="#!">날씨</a></li>
-					
+						href="weather/allData">날씨</a></li>
+
 				</ul>
+
+				<c:choose>
+					<c:when test="${empty login}">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+							<li><a class="dropdown-item" href="/member/login">로그인</a></li>
+						</ul>
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+							<li><a class="dropdown-item" href="/member/insert">회원가입</a></li>
+						</ul>
+					</c:when>
+					<c:otherwise>
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+							<li><a class="dropdown-item" aria-current="page"
+								href="/member/logout">로그아웃</a></li>
+						</ul>
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+							<li><a class="dropdown-item" aria-current="page"
+								href="/member/detail/${login.userid}">My</a></li>
+						</ul>
+					</c:otherwise>
+				</c:choose>
+
 
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
 					<li><button class="btn btn-outline-dark likes-list-btn"
@@ -121,6 +122,7 @@
 				<div class="ms-3 d-flex">
 					<i id="weather_condition"></i> <label class="ms-1" id="weather_tmp"></label>
 				</div>
+
 
 				<!-- 구글 번역 API -->
 				<div class="ms-3" id="google_translate_element"></div>
