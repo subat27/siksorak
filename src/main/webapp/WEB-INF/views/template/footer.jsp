@@ -40,10 +40,12 @@ $(document).ready(function() {
 			$(".likes-count").html(data.result);
 		});
 	}
-		
-	$.getJSON('/likes/getList', function(data) {
+	
+	/* 찜목록 content Id 가져오는 함수 */
+	/* 이 함수를 페이지 로딩하는 부분에 넣어서 각 관광지의 하트 부분을 채워주게 변경 */
+	/* $.getJSON('/likes/getList', function(data) {
 		console.log(data.result);
-	});
+	}); */
 	
 	/* 페이지 버튼 클릭 */
 	$(".pagenationBtn > button").click(function() {
@@ -105,23 +107,7 @@ $(document).ready(function() {
 		var iTag = $(this).find("i");
 		var spanTag = $(this).find("span");
 		
-		if (iTag.attr("class") == "bi-suit-heart"){
-			fetchAndDisplayData(contentId, iTag, spanTag);
-			
-		} else {
-			/* var uri = '/likes/delete/' + contentId;
-			$.getJSON(uri, function(data){
-				if (data == "delete"){
-					unsetHeart(iTag);
-					$.getJSON('/likes/countMembers/'+contentId, function(data){
-						spanTag.html(data);
-					});
-					$.getJSON('/likes/countLikes', function(data){
-						$(".likes-count").html(data);
-					});
-				}
-			}); */
-		}
+		fetchAndDisplayData(contentId, iTag, spanTag);
 		
 	});
 	

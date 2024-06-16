@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import domain.UtilsForBoard;
 import kr.co.clover.entity.Member;
 import kr.co.clover.service.MemberService;
-import kr.co.clover.service.TestService;
 
 @Controller
 @RequestMapping("/member")

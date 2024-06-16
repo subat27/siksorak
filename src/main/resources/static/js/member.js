@@ -8,7 +8,20 @@ function fetchAndDisplayData(contentId, iTag, spanTag) {
 		).done(function(response1, response2, response3){
 			setHeart(iTag);
 			console.log(response1[0].result);
-			spanTag.html(Number(response2[0].result) + 1);
+			spanTag.html(Number(response2[0].result));
+			$(".likes-count").html(Number(response3[0].result) + 1);
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+			console.error('Error fetching data:', errorThrown);
+		});
+	} else {
+		$.when(
+			$.getJSON('/likes/delete/'+contentId),
+			$.getJSON('/likes/countMembers/'+contentId),
+			$.getJSON('/likes/countLikes')
+		).done(function(response1, response2, response3){
+			unsetHeart(iTag);
+			console.log(response1[0].result);
+			spanTag.html(Number(response2[0].result));
 			$(".likes-count").html(Number(response3[0].result) + 1);
 		}).fail(function(jqXHR, textStatus, errorThrown) {
 			console.error('Error fetching data:', errorThrown);

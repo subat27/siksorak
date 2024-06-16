@@ -18,7 +18,7 @@ spring:
       path: /h2-console
 
   datasource:
-    url: jdbc:h2:~/local3
+    url: jdbc:h2:~/local4
     driver-class-name: org.h2.Driver
     username: sa
     password:

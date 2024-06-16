@@ -46,9 +46,9 @@ public class LocationService {
 		return lRepository.findAll(pageable);
 	}
 	
-	// 특정 관광지를 호출 - 찜목록 만들때 썼던거 같은데 삭제해도 되지 않을까 싶음 / 확인 필요
-	public Location findLocation(int locationId) {
-		return lRepository.findById(locationId).get();
+	// 특정 관광지를 호출
+	public Location findLocation(String contentId) {
+		return lRepository.findById(contentId).get();
 	}
 	
 	// 관광지 목록에서 테마를 선택하지 않았을 때 목록
@@ -70,7 +70,7 @@ public class LocationService {
 	}
 
 	// 찜 목록 가져오기 위해서 별도로 구현한 메소드
-	public Page<Location> findByLocationIds(List<String> locationIdList, int page) {
+	public Page<Location> findByLocationIds(List<Location> locationIdList, int page) {
 		int pagePerBoardCount = 12;
 		Pageable pageable = PageRequest.of(page, pagePerBoardCount, Sort.by(Sort.Direction.ASC, "id"));
 		return lRepository.findByContentidIn(locationIdList, pageable);
