@@ -15,20 +15,20 @@
     .left-div {
         width: 50%;
         float: left;
+        
     }
 
     /* 우측 div */
     .right-div {
         width: 50%;
-        height: 500px;
         float: right;
     }
         .left {
-        width: 50%;
+        width: 30%;
         float: left;
     }
         .right {
-        width: 50%;
+        width: 70%;
         float: right;
     }
 
@@ -38,79 +38,83 @@
         display: table;
         clear: both;
     }
+    
+    
 </style>
-	<div class="container px-4 px-lg-5 mt-2">
+	<div class="container px-3 px-lg-3 mt-2">
 		<h3>찜 목록</h3>
 
-		<div id="map" style="width: 50%; height: 500px;" class="left-div"></div>
+		<div id="map" style="width: 50%; height: 800px;" class="left-div"></div>
 		
 		<div class=" right-dev">
 		<div
-			class="col gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			class="row row-cols-1 justify-content-center">
 			<c:forEach items="${paging.content}" var="location">
 
 				<!-- 관광지 정보 -->
-				<div class="col mb-3">
-					<div class="col card">
+				<div class="mb-3">
+					<div class="row row-cols-1 card">
 					
+						<div style="width: 500px; height: 150px;">
 						<!-- 관광지 이미지 -->
-						<img class="col card-img-left h-100 w-100 left" src="${location.firstimage }"
+						<img class="row row-cols-2 card-img-left h-100 w-40 left" src="${location.firstimage }"
 							onerror="this.onerror=null; this.src='/image/noImage.png'"
-							 alt="..." />	
-						
-						<div class="col right">
-						<!-- 관광지 상세 -->
-						<div class="col card-body p-1">
-							<div class="col text-center">
-								<!-- 관광지명 -->
-								<h5 class="fw-bolder">${location.title }</h5>
-								<!-- 관광지 간단한 설명-->
-								${location.addr1 }
+							 alt="..." />
+
+							<div class="col card-body">
+							<!-- 관광지 상세 -->
+							<div class="p-2">
+								<div class="text-center">
+									<!-- 관광지명 -->
+									<h5 class="fw-bolder">${location.title }</h5>
+									<!-- 관광지 간단한 설명-->
+									${location.addr1 }
+								</div>
 							</div>
-						</div>
+								
 							
-						
-						<!-- 상세 페이지로 이동 -->
-
-							<div class="col text-center">
-								<a class="btn btn-outline-dark mt-auto"
-									href="/test2?contentId=${location.contentid}">상세보기</a>
-
-
-								<c:choose>
-									<c:when test="${empty login}">
-										<button id="jjimBtn" type="button"
-											class="btn btn-outline-dark mt-auto" name="jjimBtn">
-											<i class="bi-suit-heart me-1"></i>
-										</button>
-
-									</c:when>
-									<c:otherwise>
-
-										<button id="jjimBtn" type="button"
-											class="btn btn-outline-dark mt-auto jjimBtn" name="jjimBtn"
-											value="${location.id}">
-											<i class="bi-suit-heart me-1"></i>
-										</button>
-
-									</c:otherwise>
-								</c:choose>
-
-
-							</div>
-
-				
+							<!-- 상세 페이지로 이동 -->
+	
+								<div class="text-center p-2">
+									<a class="btn btn-outline-dark mt-auto"
+										href="/test2?contentId=${location.contentid}">상세보기</a>
+	
+	
+									<c:choose>
+										<c:when test="${empty login}">
+											<button id="jjimBtn" type="button"
+												class="btn btn-outline-dark mt-auto" name="jjimBtn">
+												<i class="bi-suit-heart me-1"></i>
+											</button>
+	
+										</c:when>
+										<c:otherwise>
+	
+											<button id="jjimBtn" type="button"
+												class="btn btn-outline-dark mt-auto jjimBtn" name="jjimBtn"
+												value="${location.id}">
+												<i class="bi-suit-heart me-1"></i>
+											</button>
+	
+										</c:otherwise>
+									</c:choose>
+	
+								</div>
+							</div>					
 						</div>
+
 						
 					</div>
 				</div>
 			
 			</c:forEach>
 
+			<div class="d-flex justify-content-center">
+				<jsp:include page="../member_location/jjim_paging.jsp" />
+			</div>
+
 		</div>
-		</div>
-		<div class="d-flex justify-content-center">
-			<jsp:include page="../location/part_paging.jsp" />
+		
 		</div>
 
 	</div>
@@ -127,17 +131,38 @@ const NAVER_MAP_API = config.naver_map_key;
 $.getScript("https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId="+NAVER_MAP_API, function(){
 	
 
-
-var cityhall = new naver.maps.LatLng(37.3595704, 127.105399),
-    map = new naver.maps.Map('map', {
+    var map = new naver.maps.Map('map', {
         center: new naver.maps.LatLng(37.3595704, 127.105399),
-        zoom: 15
-    }),
-    marker = new naver.maps.Marker({
-        map: map,
-        position: cityhall
+        zoom: 10
     });
 
+    var coordinates = [
+        { lat: 37.3633324, lng: 129.1054988 },
+        { lat: 37.3632916, lng: 129.1085015 },
+        { lat: 37.3632507, lng: 129.1115043 },
+        { lat: 37.3632097, lng: 129.114507 },
+        { lat: 37.3631687, lng: 129.1175097 },
+        { lat: 37.3597282, lng: 129.105422 },
+        { lat: 37.3596874, lng: 129.1084246 },
+        { lat: 37.3596465, lng: 129.1114272 },
+        { lat: 37.3596056, lng: 129.1144298 },
+        { lat: 37.3595646, lng: 129.1174323 }
+    ];
+
+    function createMarkers(map, coordinates) {
+        var markerList = [];
+        for (var i = 0; i < coordinates.length; i++) {
+            var marker = new naver.maps.Marker({
+                position: new naver.maps.LatLng(coordinates[i].lat, coordinates[i].lng),
+                map: map
+            });
+            markerList.push(marker);
+        }
+        return markerList;
+    }
+
+    // 마커 생성 함수 호출
+    var markers = createMarkers(map, coordinates);
 });
 </script>
 <%@ include file="../template/footer.jsp"%>
