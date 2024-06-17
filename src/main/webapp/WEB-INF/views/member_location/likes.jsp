@@ -45,25 +45,25 @@
 	<div class="container px-3 px-lg-3 mt-2">
 		<h3>찜 목록</h3>
 
-		<div id="map" style="width: 50%; height: 700px;" class="left-div"></div>
+		<div id="map" style="width: 50%; height: 700px;" class="left-div me-3"></div>
 
-		<div class=" right-dev">
+		<div class="right-dev">
 
-			<div
-				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			<div class="row row-cols-1 justify-content-center">
 				<c:forEach items="${paging.content}" var="memberLocation">
 
 					<!-- 관광지 정보 -->
 					<div class="mb-3">
 						<div class="row row-cols-1 card">
 
+							
+
 							<div class="col card-body">
 								<!-- 관광지 이미지 -->
 								<img class="row row-cols-2 card-img-left left"
-									src="${memberLocation.location.firstimage }"
-									onerror="this.onerror=null; this.src='/image/noImage.png'"
-									alt="..." style="height: 150px; width: 150px;" />
-
+								src="${memberLocation.location.firstimage }"
+								onerror="this.onerror=null; this.src='/image/noImage.png'"
+								alt="..." style="height: 150px; width: 150px;"/>
 								<!-- 관광지 상세 -->
 								<div class="p-2">
 									<div class="text-center">
@@ -74,6 +74,7 @@
 									</div>
 								</div>
 
+
 								<!-- 상세 페이지로 이동 -->
 
 								<div class="text-center p-2">
@@ -82,10 +83,10 @@
 
 									<input class="lat" type="hidden" value="${memberLocation.location.mapy}">
 									<input class="lng" type="hidden" value="${memberLocation.location.mapx}">
-
+									
 									<input class="title" type="hidden" value="${memberLocation.location.title}">
 									<input class="tel" type="hidden" value="${memberLocation.location.tel}">
-
+									
 									<c:choose>
 										<c:when test="${empty login}">
 											<button id="jjimBtn" type="button"
@@ -98,7 +99,7 @@
 
 											<button id="jjimBtn" type="button"
 												class="btn btn-outline-dark mt-auto jjimBtn" name="jjimBtn"
-												value="${location.id}">
+												value="${memberLocation.location.contentid}">
 												<i class="bi-suit-heart me-1"></i>
 											</button>
 
@@ -112,17 +113,16 @@
 						</div>
 					</div>
 
+
 				</c:forEach>
 
 				<div class="d-flex justify-content-center">
-					<jsp:include page="../member_location/jjim_paging.jsp" />
+					<jsp:include page="part_paging.jsp" />
 				</div>
 
 			</div>
 		</div>
-		<div class="d-flex justify-content-center">
-			<jsp:include page="part_paging.jsp" />
-		</div>
+
 	</div>
 </section>
 <script type="text/javascript" src="/js/api_key.js"></script>
