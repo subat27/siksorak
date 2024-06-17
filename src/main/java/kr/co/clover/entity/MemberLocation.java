@@ -32,3 +32,4 @@ public class MemberLocation {
     private Location location;
 	
 }
+

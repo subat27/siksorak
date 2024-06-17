@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.clover.entity.Location;
 import kr.co.clover.entity.Member;
 import kr.co.clover.entity.MemberLocation;
 import kr.co.clover.entity.MemberLocationId;
@@ -39,14 +40,19 @@ public class MemberLocationController {
 	public String insertLike(HttpSession session, HttpServletRequest request, @PathVariable("contentId") String contentId) {
 		Member member = (Member) request.getSession(false).getAttribute("login");
 		member = mService.findByUserid(member.getUserid());
+		
+		Location location = lService.findLocation(contentId);
 				
 		MemberLocation memberLocation = new MemberLocation();
 		MemberLocationId memberLocationId = new MemberLocationId(member.getMemberId(), contentId);
 		memberLocation.setId(memberLocationId);
-		memberLocation.setLocation(lService.findLocation(contentId));
+		memberLocation.setLocation(location);
+		
 		memberLocation.setMember(member);
-				
+		
 		mlService.insertJjim(memberLocation);
+		location.setCount(location.getCount()+1);
+		lService.modify(location);
 		
 		return "{\"result\" : \"success\"}";
 	}
@@ -57,8 +63,13 @@ public class MemberLocationController {
 		Member member = (Member) request.getSession(false).getAttribute("login");
 		member = mService.findByUserid(member.getUserid());
 		
+		Location location = lService.findLocation(locationId);
+		
 		mlService.deleteJjim(member.getMemberId(), locationId);
 				
+		location.setCount(location.getCount()-1);
+		lService.modify(location);
+		
 		return "redirect:/likes/list";
 	}
 	
@@ -75,6 +86,7 @@ public class MemberLocationController {
 		for( MemberLocation ml : paging.getContent()) {
 			System.out.println(ml.getLocation().getFirstimage());
 			System.out.println(ml.getMember().getAge());
+			ml.getLocation().setCount();
 		}
 		
 		model.addAttribute("paging", paging);
@@ -100,7 +112,6 @@ public class MemberLocationController {
 	@ResponseBody
 	public String countUsers(HttpServletRequest request, @PathVariable("locationId") String locationId) {
 		int count = mlService.countByLocationId(locationId);
-		System.out.println(count);
 		return "{\"result\" : \"" + count + "\"}";
 	}
 	

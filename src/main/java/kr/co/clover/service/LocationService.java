@@ -42,7 +42,7 @@ public class LocationService {
 	// 전체 관광지 목록을 호출
 	public Page<Location> findAll(int page) {
 		int pagePerBoardCount = 12;
-		Pageable pageable = PageRequest.of(page, pagePerBoardCount, Sort.by(Sort.Direction.ASC, "title"));		
+		Pageable pageable = PageRequest.of(page, pagePerBoardCount, Sort.by(Sort.Direction.DESC, "count"));		
 		return lRepository.findAll(pageable);
 	}
 	
@@ -55,7 +55,7 @@ public class LocationService {
 	public Page<Location> findLocationExceptTheme(int page, String keyword, String sigungucode){
 		int pagePerBoardCount = 12;
 		Pageable pageable = PageRequest.of(page, pagePerBoardCount,
-				Sort.by(Sort.Direction.ASC, "id"));		
+				Sort.by(Sort.Direction.DESC, "count"));		
 		
 		return lRepository.findByTitleOrAddr1AndSigungucode(keyword, keyword, sigungucode, pageable);		
 	}
@@ -64,7 +64,7 @@ public class LocationService {
 	public Page<Location> findLocationContainTheme(int page, String keyword, String sigungucode, List<String> contentTypeId){
 		int pagePerBoardCount = 12;
 		Pageable pageable = PageRequest.of(page, pagePerBoardCount,
-				Sort.by(Sort.Direction.ASC, "id"));
+				Sort.by(Sort.Direction.DESC, "count"));
 				
 		return lRepository.findByTitleOrAddr1AndSigungucodeAndContentTypeId(keyword, keyword, sigungucode, contentTypeId, pageable);
 	}
@@ -72,8 +72,12 @@ public class LocationService {
 	// 찜 목록 가져오기 위해서 별도로 구현한 메소드
 	public Page<Location> findByLocationIds(List<Location> locationIdList, int page) {
 		int pagePerBoardCount = 3;
-		Pageable pageable = PageRequest.of(page, pagePerBoardCount, Sort.by(Sort.Direction.ASC, "id"));
+		Pageable pageable = PageRequest.of(page, pagePerBoardCount, Sort.by(Sort.Direction.DESC, "count"));
 		return lRepository.findByContentidIn(locationIdList, pageable);
+	}
+
+	public void modify(Location location) {
+		lRepository.save(location);
 	}
 	
 }

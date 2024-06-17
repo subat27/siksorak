@@ -113,7 +113,7 @@ var cityhall = new naver.maps.LatLng(${details.get(0)["mapy"]}, ${details.get(0)
 
 var contentString = [
         '<div class="iw_inner">',
-        '	<h3>${details.get(0)["title"]}</h3>',        
+        '	<h3>${details.get(0)["title"]}</h3>',
         '   <p>${details.get(0)["tel"]} </p>',
         '   <p>${details.get(0)["homepage"]} </p>',
         '</div>'

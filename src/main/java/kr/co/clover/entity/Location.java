@@ -52,5 +52,10 @@ public class Location {
 	@OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
 	private List<MemberLocation> members = new ArrayList<>();
 
+	private int count;
+	
+	public void setCount() {
+		this.count = members.size();
+	}
 
 }

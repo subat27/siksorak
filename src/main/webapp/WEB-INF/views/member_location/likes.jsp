@@ -89,9 +89,8 @@
 
 									<button id="jjimBtn" type="button"
 										class="btn btn-outline-dark mt-auto deleteJjimBtn" name="jjimBtn" value="${memberLocation.location.contentid}">
-										<i class="bi-suit-heart-fill me-1"></i>
+										<i class="bi-suit-heart-fill me-1"><span>${memberLocation.location.count}</span></i>
 									</button>
-									
 								</div>
 							</div>
 						</div>

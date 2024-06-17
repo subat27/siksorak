@@ -22,6 +22,4 @@ public interface LocationRepository extends JpaRepository<Location, String>{
 	Page<Location> findByTitleOrAddr1AndSigungucodeAndContentTypeId(@Param("title")String title, @Param("addr1")String addr1, @Param("sigungucode")String sigungucode, @Param("ids")List<String> contentTypeId, Pageable pageable);
 		
 	Page<Location> findByContentidIn(List<Location> locationIdList, Pageable pageable);
-	
-	Page<Location> findByContenttypeid(String contenttypeid, Pageable pageable);
 }
