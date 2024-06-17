@@ -8,7 +8,7 @@ function fetchAndDisplayData(contentId, iTag, spanTag) {
 		).done(function(response1, response2, response3){
 			setHeart(iTag);
 			console.log(response1[0].result);
-			spanTag.html(Number(response2[0].result));
+			spanTag.html(Number(response2[0].result+1));
 			$(".likes-count").html(Number(response3[0].result) + 1);
 		}).fail(function(jqXHR, textStatus, errorThrown) {
 			console.error('Error fetching data:', errorThrown);
@@ -26,8 +26,7 @@ function fetchAndDisplayData(contentId, iTag, spanTag) {
 		}).fail(function(jqXHR, textStatus, errorThrown) {
 			console.error('Error fetching data:', errorThrown);
 		});
-	}
-	
+	}	
 }
 
 function setHeart(tag) {

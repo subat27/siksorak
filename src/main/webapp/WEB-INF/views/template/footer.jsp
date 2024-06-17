@@ -11,7 +11,7 @@
 		<div class="row">
 			<div class="col-lg-12 h-100 text-center text-lg-end my-auto">
 				<p class="text-muted small mb-4 mb-lg-0">&copy; Clover
-					2023. All Rights Reserved.</p>
+					2024. All Rights Reserved.</p>
 			</div>
 		</div>
 	</div>
@@ -33,7 +33,7 @@ $(document).ready(function() {
 	var keyword = "${keyword}";
 	var login = "${login}";
 	
-	/* 찜목록 숫자 갱신 */
+	/* 찜목록 버튼 내부 숫자 갱신 */
 	if (login != ""){
 		$.getJSON('/likes/countLikes', function(data){
 			console.log(data.result);
@@ -41,12 +41,14 @@ $(document).ready(function() {
 		});
 	}
 	
-	/* 찜목록 content Id 가져오는 함수 */
-	/* 이 함수를 페이지 로딩하는 부분에 넣어서 각 관광지의 하트 부분을 채워주게 변경 */
-	/* $.getJSON('/likes/getList', function(data) {
-		console.log(data.result);
+	/* $(".addLikeListBtn").each(function(){
+		var contentId = $(this).attr("data-contentId");
+		$.getJSON('/likes/getMembers/'+contentId, function(data){
+			console.log("login:" + login.memberId);
+			console.log(data.result);
+		});
 	}); */
-	
+		
 	/* 페이지 버튼 클릭 */
 	$(".pagenationBtn > button").click(function() {
 		let dest = $(this).attr("data-dest")
@@ -103,12 +105,12 @@ $(document).ready(function() {
 	
 	/* 찜 버튼 클릭 이벤트 추가 */
 	$(".addLikeListBtn").click(function() {
-		var contentId = $(this).attr("data-contentId");			
+		var contentId = $(this).attr("data-contentId");
 		var iTag = $(this).find("i");
 		var spanTag = $(this).find("span");
-		
+
 		fetchAndDisplayData(contentId, iTag, spanTag);
-		
+				
 	});
 	
 	
