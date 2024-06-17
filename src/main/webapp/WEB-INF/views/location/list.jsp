@@ -48,7 +48,6 @@
 				<option value="오락">오락</option>
 			</select>
 			
-			
 			<input class="form-control me-2 keywordValue" style="width: 65%; display: inline;" placeholder="지역명 또는 키워드를 입력해주세요">
 			<button type="button" class="btn btn-primary col-auto keywordSearch">검색</button>
 		</div>
@@ -80,10 +79,9 @@
 								<a class="btn btn-outline-dark mt-auto"
 									href="/location/detail?contentId=${location.contentid}">상세보기</a>
 								<button class="btn btn-outline-dark mt-auto addLikeListBtn"
-								data-contentId="${location.contentid}"><i class="bi-suit-heart" style="color: red;"></i><span></span></button>	
+								data-contentId="${location.contentid}"><i class="bi-suit-heart" style="color: red;"></i><span>${fn:length(location.members)}</span></button>
 								
 							</div>
-							
 						</div>
 					</div>
 				</div>

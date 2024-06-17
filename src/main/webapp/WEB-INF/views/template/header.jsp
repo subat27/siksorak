@@ -111,13 +111,7 @@
 				</c:choose>
 
 
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-					<li><button class="btn btn-outline-dark likes-list-btn"
-							type="button">
-							<i class="bi-suit-heart-fill me-1"></i> 찜목록 <span
-								class="badge bg-dark text-white ms-1 rounded-pill likes-count">0</span>
-						</button></li>
-				</ul>
+				
 
 				<div class="ms-3 d-flex">
 					<i id="weather_condition"></i> <label class="ms-1" id="weather_tmp"></label>
@@ -125,7 +119,15 @@
 
 
 				<!-- 구글 번역 API -->
-				<div class="ms-3" id="google_translate_element"></div>
+				<div class="ms-5 me-5" id="google_translate_element"></div>
+
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+					<li><button class="btn btn-outline-dark likes-list-btn"
+							type="button">
+							<i class="bi-suit-heart-fill me-1"></i> 찜목록 <span
+								class="badge bg-dark text-white ms-1 rounded-pill likes-count">0</span>
+						</button></li>
+				</ul>
 
 			</div>
 
