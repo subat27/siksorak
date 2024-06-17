@@ -18,12 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import kr.co.clover.entity.ApiCode;
 import kr.co.clover.entity.Location;
-import kr.co.clover.entity.Member;
 import kr.co.clover.entity.MemberLocation;
 import kr.co.clover.service.ApiService;
 import kr.co.clover.service.LocationService;
@@ -101,7 +97,6 @@ public class LocationController {
 		for (MemberLocation memberLocation : location.getMembers()) {
 			memberIds.add(memberLocation.getMember().getUserid());
 		}
-		
 		return "{\"result\" : \"" + memberIds + "\"}";
 	}
 

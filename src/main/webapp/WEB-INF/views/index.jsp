@@ -11,24 +11,18 @@
 
 
 
-	<div style="position: relative; overflow: hidden; class="container px-4 px-lg-5 my-5">
+	<div style="position: relative; overflow: hidden;" class="container px-4 px-lg-5 my-5">
 	<a href="http://localhost:8900/location/list?sigunguCode=&keyword=%EA%B6%81&contentType=%EB%AA%85%EC%86%8C">
 		<img style="height: 700px; width: 100%;" alt="" src="/image/gyeongbokgung.jpg">
-		<div style="position: absolute; top: 100px; left: 450px; color: white; font-size: 70px; font-weight: bold; text-shadow: 1px 1px 2px black;">
+		<label style="position: absolute; top: 100px; left: 150px; color: white; font-size: 70px; font-weight: bold; text-shadow: 1px 1px 2px black; font-family: 'Freesentation-6SemiBold';">
         	서울의 역사적인 아름다움을 담은 궁궐
-    	</div>
-    </a>	
+    	</label>
+    </a>
 	</div>
 
 
-
-
 <!-- Icons Grid-->
-<section class="features-icons bg-light text-center" style="padding: 50 
-
-
-
-px 0;">
+<section class="features-icons bg-light text-center" style="padding: 50px 0;">
 	<div class="container">
 		<div class="row">
 			<!-- 이 div 태그를 누르면 먹거리 화면으로 연결 -->
