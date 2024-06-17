@@ -35,7 +35,7 @@ $(document).ready(function() {
 		var contentId = $(this).attr("data-contentId");
 		var iTag = $(this).find("i");
 		$.getJSON('/location/getMembers/'+contentId, function(data){
-			if(data.result.indexOf("${login.userid}") != -1){
+			if(data.result.indexOf("${login.userid}") != -1 && login != ""){
 				setHeart(iTag);
 			}			
 		});
