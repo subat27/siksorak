@@ -80,11 +80,11 @@
 									<a class="btn btn-outline-dark mt-auto"
 										href="/test2?contentId=${memberLocation.location.contentid}">상세보기</a>
 
-									<input class="lat" type="hidden" value="${location.mapy}">
-									<input class="lng" type="hidden" value="${location.mapx}">
+									<input class="lat" type="hidden" value="${memberLocation.location.mapy}">
+									<input class="lng" type="hidden" value="${memberLocation.location.mapx}">
 
-									<input class="title" type="hidden" value="${location.title}">
-									<input class="tel" type="hidden" value="${location.tel}">
+									<input class="title" type="hidden" value="${memberLocation.location.title}">
+									<input class="tel" type="hidden" value="${memberLocation.location.tel}">
 
 									<c:choose>
 										<c:when test="${empty login}">
