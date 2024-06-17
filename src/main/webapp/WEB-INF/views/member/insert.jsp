@@ -2,21 +2,13 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="/css/bootstrap.min.css">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+   
+<%@ include file="../template/title.jsp"%>
 
-</head>
-<body>
 <%@ include file="/WEB-INF/views/template/header.jsp" %>
 
-<div class="container">
+<div class="container" style="width: 30%">
 
 <h2>회원 가입</h2>
 
@@ -86,5 +78,4 @@
 	});
 </script>
 
-</body>
-</html>
+<%@ include file="/WEB-INF/views/template/footer.jsp" %>
