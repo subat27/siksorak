@@ -12,17 +12,17 @@
 <!-- Section-->
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-2">
-		<table class="table">
+		<table class="table table-bordered border-primary border-opacity-50">
 			<tr>
 				<th></th>
 				<th></th>
 				<c:forEach var="i" begin="0" end="23">
-					<td><pre>${i }시</pre></td>
+					<th style="align-content: center; text-align: center;"><pre>${i }시</pre></th>
 				</c:forEach>
 			</tr>
 			<tr>
-				<th style="align-content: center;"><pre>오늘</pre></th>
-				<th style="align-content: center;"><pre>날씨</pre> <pre>기온</pre> <pre>강수확률</pre></th>
+				<th style="align-content: center; text-align: center;"><pre>오늘</pre></th>
+				<th style="align-content: center; text-align: center;"><pre>날씨</pre> <pre>기온</pre> <pre>강수확률</pre></th>
 				<c:forEach var="i" begin="0" end="5">
 					<td style="align-content: center;"></td>
 				</c:forEach>
@@ -66,8 +66,8 @@
 			</tr>
 
 			<tr>
-				<th style="align-content: center;"><pre>내일</pre></th>
-				<th style="align-content: center;"><pre>날씨</pre> <pre>기온</pre> <pre>강수확률</pre></th>
+				<th style="align-content: center; text-align: center;"><pre>내일</pre></th>
+				<th style="align-content: center; text-align: center;"><pre>날씨</pre> <pre>기온</pre> <pre>강수확률</pre></th>
 				<c:forEach items="${categories.keySet()}" var="date" begin="18"
 					end="41">
 					<td style="align-content: center;">
@@ -108,8 +108,8 @@
 			</tr>
 
 			<tr>
-				<th style="align-content: center;"><pre>모레</pre></th>
-				<th style="align-content: center;"><pre>날씨</pre> <pre>기온</pre> <pre>강수확률</pre></th>
+				<th style="align-content: center; text-align: center;"><pre>모레</pre></th>
+				<th style="align-content: center; text-align: center;"><pre>날씨</pre> <pre>기온</pre> <pre>강수확률</pre></th>
 				<c:forEach items="${categories.keySet()}" var="date" begin="18"
 					end="41">
 					<td style="align-content: center;"><c:choose>

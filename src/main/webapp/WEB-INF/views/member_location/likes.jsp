@@ -102,6 +102,14 @@
 					<jsp:include page="part_paging.jsp" />
 				</div>
 
+				<div>
+					<c:forEach items="${locations }" var="location">
+						<input class="latAll" type="hidden" value="${location.mapy }">
+						<input class="lngAll" type="hidden" value="${location.mapx }">
+						<input class="titleAll" type="hidden" value="${location.title}">
+						<input class="telAll" type="hidden" value="${location.tel}">
+					</c:forEach>
+				</div>
 			</div>
 		</div>
 
@@ -123,11 +131,11 @@
 		});
 
 		// lat와 lng 값을 가져오기 위해 DOM을 이용해서 요소를 선택합니다.
-		var latInputs = document.querySelectorAll('.lat');
-		var lngInputs = document.querySelectorAll('.lng');
+		var latInputs = document.querySelectorAll('.latAll');
+		var lngInputs = document.querySelectorAll('.lngAll');
 
-		var titles = document.querySelectorAll('.title');
-		var tels = document.querySelectorAll('.tel');
+		var titles = document.querySelectorAll('.titleAll');
+		var tels = document.querySelectorAll('.telAll');
 
 		// coordinates 배열에 좌표 데이터를 넣습니다.
 		var coordinates = [];

@@ -1,5 +1,7 @@
 package kr.co.clover.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,6 +27,10 @@ public class MemberLocationService {
 		int pagePerBoardCount = 3;
 		Pageable pageable = PageRequest.of(page, pagePerBoardCount, Sort.by(Sort.Direction.ASC, "id"));
 		return mlRepository.findLocationById_MemberId(memberId, pageable);
+	}
+	
+	public List<MemberLocation> findByMemberId(int memberId) {
+		return mlRepository.findLocationById_MemberId(memberId);
 	}
 
 	// 회원별 찜 목록 개수 출력, 네비게이션 찜목록 숫자표시에 사용

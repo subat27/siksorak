@@ -16,6 +16,8 @@ public interface MemberLocationRepository extends JpaRepository<MemberLocation, 
 
 	Page<MemberLocation> findLocationById_MemberId(Integer memberId, Pageable pageable);
 	
+	List<MemberLocation> findLocationById_MemberId(Integer memberId);
+	
 	Optional<MemberLocation> findById_MemberIdAndId_contentid(Integer memberId, String contentid);
 	
 	int countById_MemberId(Integer memberId);

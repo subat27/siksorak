@@ -41,7 +41,7 @@
 				<option value="중구">중구</option>
 				<option value="중랑구">중랑구</option>
 			</select>
-			<select class="form-select me-2" style="width: 25%; display: inline;" id="contentTypeSelectEvent">
+			<select class="form-select me-2" style="width: 25%; display: inline;" id="startMonthSelectEvent">
 				<option value="" selected>시작월</option>
 				<option value="6">6월</option>
 				<option value="7">7월</option>

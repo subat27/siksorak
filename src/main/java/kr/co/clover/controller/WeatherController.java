@@ -58,7 +58,6 @@ public class WeatherController {
 			
 			return categories;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -68,6 +67,10 @@ public class WeatherController {
 	public String getAllData(Model model) {
 		LocalDateTime now = LocalDateTime.now();
 		String date = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+		int hour = Integer.parseInt(now.format(DateTimeFormatter.ofPattern("HH"))) + 1;
+		if (hour < 6) {
+			date =  date.substring(0, 7) + ((date.charAt(7) - '0') - 1);
+		}
 		try {
 			Map<String, WeatherInfo> categories = wService.getVilageFcst(apiService.getTourApiKey(), date);
 			
@@ -78,7 +81,6 @@ public class WeatherController {
 			
 			return "weather/weatherList";
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

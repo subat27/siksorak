@@ -1,5 +1,8 @@
 package kr.co.clover.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -81,15 +84,22 @@ public class MemberLocationController {
 		Member member = (Member) request.getSession(false).getAttribute("login");
 		member = mService.findByUserid(member.getUserid());
 		
+		List<MemberLocation> memberLocations = mlService.findByMemberId(member.getMemberId());
 		Page<MemberLocation> paging = mlService.findByMemberId(member.getMemberId(), page-1);
-				
+		List<Location> locations = new ArrayList<Location>();
+		
 		for( MemberLocation ml : paging.getContent()) {
 			System.out.println(ml.getLocation().getFirstimage());
-			System.out.println(ml.getMember().getAge());
 			ml.getLocation().setCount();
 		}
 		
+		for(MemberLocation ml : memberLocations) {
+			ml.getLocation().getFirstimage();
+			locations.add(ml.getLocation());
+		}
+		
 		model.addAttribute("paging", paging);
+		model.addAttribute("locations", locations);
 		
 		return "member_location/likes";
 	}
