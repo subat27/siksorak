@@ -13,7 +13,7 @@
 	<div class="container px-4 px-lg-5 mt-2">
 		<h3>관광지 목록</h3>
 		<div class="row g-3 mb-3">
-			<select class="form-select me-2" style="width: 25%; display: inline;" id="sigunguCodeSelect">
+			<select class="form-select me-2" style="width: 25%; display: inline;" id="sigunguCodeSelectEvent">
 				<option value="" selected>지역명</option>
 				<option value="강남구">강남구</option>
 				<option value="강동구">강동구</option>
@@ -41,17 +41,17 @@
 				<option value="중구">중구</option>
 				<option value="중랑구">중랑구</option>
 			</select>
-			<select class="form-select me-2" style="width: 25%; display: inline;" id="contentTypeSelect">
-				<option value="" selected>테마명</option>
-				<option value="음식">음식</option>
-				<option value="명소">명소</option>
-				<option value="오락">오락</option>
+			<select class="form-select me-2" style="width: 25%; display: inline;" id="contentTypeSelectEvent">
+				<option value="" selected>시작월</option>
+				<option value="6">6월</option>
+				<option value="7">7월</option>
+				<option value="8">8월</option>
+				<option value="9">9월</option>
+				<option value="10">10월</option>
+				<option value="11">11월</option>
+				<option value="12">12월</option>
 			</select>
-			
-			<input class="form-control me-2 keywordValue" style="width: 65%; display: inline;" placeholder="지역명 또는 키워드를 입력해주세요">
-			<button type="button" class="btn btn-primary col-auto keywordSearch">검색</button>
 		</div>
-
 
 		<div
 			class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -79,9 +79,10 @@
 								<a class="btn btn-outline-dark mt-auto"
 									href="/location/detail?contentId=${location.contentid}">상세보기</a>
 								<button class="btn btn-outline-dark mt-auto addLikeListBtn"
-								data-contentId="${location.contentid}"><i class="bi-suit-heart" style="color: red;"></i><span>${fn:length(location.members)}</span></button>
+								data-contentId="${location.contentid}"><i class="bi-suit-heart" style="color: red;"></i><span></span></button>	
 								
 							</div>
+							
 						</div>
 					</div>
 				</div>

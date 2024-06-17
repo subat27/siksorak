@@ -36,7 +36,7 @@ public class MemberService {
 			return;
 		}
 		member.setCreateDate(dbMember.getCreateDate());
-		member.setId(dbMember.getId());
+		member.setMemberId(dbMember.getMemberId());
 		mRepository.save(member);
 	}
 

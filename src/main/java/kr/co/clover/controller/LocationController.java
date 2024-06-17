@@ -3,6 +3,7 @@ package kr.co.clover.controller;
 import java.io.IOException;
 
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,7 +30,7 @@ public class LocationController {
 	
 	// api로 서울 관광지 정보를 가져와서 DB에 저장 
 	@GetMapping("insert")
-	public String test() {
+	public String insert() {
 		try {
 			lService.insertItems(apiService.getSeoulLocationData());
 		} catch (Exception e) {
@@ -41,8 +42,10 @@ public class LocationController {
 	// 상세 페이지로 이동
 	@GetMapping("detail")
 	public String detail(String contentId, Model model) {
+		String contentTypeId = lService.findLocation(contentId).getContenttypeid();
 		try {
 			model.addAttribute("details", apiService.detailContent(contentId));
+			model.addAttribute("details2", apiService.detailContent2(contentId, contentTypeId));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -51,6 +54,7 @@ public class LocationController {
 
 	// 관광지 목록을 출력하는 코드
 	@GetMapping("list")
+	@Transactional
 	public String listLocation(@RequestParam(value = "page", defaultValue = "1") Integer page, Model model,
 			String keyword, String contentType, String sigunguCode, HttpSession session) {
 		page -= 1;
@@ -64,6 +68,10 @@ public class LocationController {
 			paging = lService.findLocationContainTheme(page, keyword, sigunguCode, apiCode.getContentsCode(contentType));
 		}
 		
+		for (Location location : paging.getContent()) {
+			location.getMembers().size();
+		}
+		
 		model.addAttribute("paging", paging);
 		session.setAttribute("keyword", keyword);
 		session.setAttribute("sigunguCode", sigunguCode);
@@ -71,7 +79,15 @@ public class LocationController {
 		
 		return "location/list";
 	}
-
+	
+	@GetMapping("test")
+	public String test() {
+		Location location = lService.findLocation("1059638");
+		
+		System.out.println(location.getMembers());
+		return "mapTest";
+	}
+	
 	// 지도 API 호출 테스트용
 	@GetMapping("map")
 	public String map() {

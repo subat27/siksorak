@@ -1,0 +1,50 @@
+<%@ page import="kr.co.clover.entity.Location"%>
+<%@ page import="org.springframework.data.domain.Page"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<%
+Page<Location> paging = (Page<Location>) request.getAttribute("paging");
+
+int perLine = 5;
+int number = paging.getNumber();
+int totalPages = paging.getTotalPages();
+
+int beginPageNum = (number / perLine) * perLine + 1;
+int endPageNum = beginPageNum + perLine - 1;
+
+if (endPageNum > totalPages) {
+	endPageNum = totalPages;
+}
+
+pageContext.setAttribute("beginPageNum", beginPageNum);
+pageContext.setAttribute("endPageNum", endPageNum);
+
+pageContext.setAttribute("prevPage", 1);
+pageContext.setAttribute("nextPage", endPageNum);
+
+if (number > 1 && number < totalPages - 1) {
+	pageContext.setAttribute("prevPage", number);
+	pageContext.setAttribute("nextPage", number + 2);
+}
+%>
+
+
+<div class="pagenationBtnLikes">
+	<button class="moveBtn btn btn-light" data-dest="${prevPage }">이전</button>
+	<c:forEach begin="${beginPageNum}" end="${endPageNum}" var="page">
+		<c:choose>
+			<c:when test="${paging.getNumber()+1 == page}">
+				<button class="btn btn-primary pageBtn" data-dest="${page}">${page}</button>
+			</c:when>
+			<c:otherwise>
+				<button class="btn btn-secondary pageBtn"  data-dest="${page}">${page}</button>
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
+	<button class="moveBtn btn btn-light" data-dest="${nextPage }">다음</button>
+</div>
+

@@ -75,72 +75,63 @@
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">테마별</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item"
-								href="/location/list?contentType=음식">음식</a></li>
+								href="/location/list?contentType=음식&sigunguCode=&keyword=">음식</a></li>
 							<li><a class="dropdown-item"
-								href="/location/list?contentType=명소">명소</a></li>
+								href="/location/list?contentType=명소&sigunguCode=&keyword=">명소</a></li>
 							<li><a class="dropdown-item"
-								href="/location/list?contentType=오락">오락</a></li>
+								href="/location/list?contentType=오락&sigunguCode=&keyword=">오락</a></li>
+							<li><a class="dropdown-item" href="/event/list">진행중인 축제/행사</a></li>
 						</ul></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
-						role="button" data-bs-toggle="dropdown" aria-expanded="false">지역별</a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="/list?sigunguCode=강동구">강동구</a></li>
-							<li><a class="dropdown-item" href="#!">중랑구</a></li>
-							<li><hr class="dropdown-divider" /></li>
-							<li><a class="dropdown-item" href="#!">강서구</a></li>
-							<li><a class="dropdown-item" href="#!">강남구</a></li>
-						</ul></li>
+
+
 					<li class="nav-item"><a class="nav-link" aria-current="page"
-						href="#!">진행중인 축제/행사</a></li>
-					<li class="nav-item"><a class="nav-link" aria-current="page"
-						href="#!">날씨</a></li>
-				</ul>
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-					<li class="nav-item"><c:choose>
-							<c:when test="${empty login}">
-								<a class="nav-link" aria-current="page" href="/member/login">로그인</a>
-							</c:when>
-
-							<c:otherwise>
-								<a class="nav-link" aria-current="page" href="/member/logout">로그아웃</a>
-							</c:otherwise>
-						</c:choose></li>
-
-					<c:choose>
-						<c:when test="${empty login}">
-							<li class="nav-item"><a class="nav-link" aria-current="page"
-								href="/member/insert">회원가입</a></li>
-
-						</c:when>
-						<c:otherwise>
-							<li class="nav-item"><a class="nav-link" aria-current="page"
-								href="/member/detail/${login.userid}">My</a></li>
-						</c:otherwise>
-					</c:choose>
+						href="weather/allData">날씨</a></li>
 
 				</ul>
 
 				<c:choose>
 					<c:when test="${empty login}">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+							<li><a class="dropdown-item" href="/member/login">로그인</a></li>
+						</ul>
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+							<li><a class="dropdown-item" href="/member/insert">회원가입</a></li>
+						</ul>
 					</c:when>
 					<c:otherwise>
-						<form class="d-flex">
-							<button class="btn btn-outline-dark likes-list-btn" type="button">
-								<i class="bi-suit-heart-fill me-1"></i> 찜목록 <span
-									class="badge bg-dark text-white ms-1 rounded-pill likes-count">0</span>
-							</button>
-						</form>
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+							<li><a class="dropdown-item" aria-current="page"
+								href="/member/logout">로그아웃</a></li>
+						</ul>
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+							<li><a class="dropdown-item" aria-current="page"
+								href="/member/detail/${login.userid}">My</a></li>
+						</ul>
 					</c:otherwise>
 				</c:choose>
+
+
+				
 
 				<div class="ms-3 d-flex">
 					<i id="weather_condition"></i> <label class="ms-1" id="weather_tmp"></label>
 				</div>
+
+
+				<!-- 구글 번역 API -->
+				<div class="ms-5 me-5" id="google_translate_element"></div>
+
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+					<li><button class="btn btn-outline-dark likes-list-btn"
+							type="button">
+							<i class="bi-suit-heart-fill me-1"></i> 찜목록 <span
+								class="badge bg-dark text-white ms-1 rounded-pill likes-count">0</span>
+						</button></li>
+				</ul>
+
 			</div>
-			
-			<!-- 구글 번역 API -->
-			<div class="ms-3" id="google_translate_element"></div>
+
+
 			<!-- <ul style="list-style:none;"><li id="google_translate_element"></li></ul> -->
 			<script
 				src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

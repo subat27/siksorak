@@ -2,19 +2,23 @@ package kr.co.clover.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import kr.co.clover.entity.MemberLocation;
+import kr.co.clover.entity.MemberLocationId;
 
 @Repository
-public interface MemberLocationRepository extends JpaRepository<MemberLocation, Integer> {
+public interface MemberLocationRepository extends JpaRepository<MemberLocation, MemberLocationId> {
 
-	@Query("SELECT ml.locationId FROM MemberLocation ml where ml.memberId IN :memberId")
-	List<String> findLocationIdByMemberId(@Param("memberId") Integer memberId);
-
-	int countByMemberId(Integer memberId);
+	Page<MemberLocation> findLocationById_MemberId(Integer memberId, Pageable pageable);
+	
+	int countById_MemberId(Integer memberId);
+	
+	int countById_Contentid(String locationId);
+	
+	List<MemberLocation> findById_Contentid(String contentid);
 
 }

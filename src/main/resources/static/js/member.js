@@ -1,17 +1,42 @@
-function jjim(){
-	$(".jjimBtn").click(function(){		
-		
-	let test = $(this).val();
-	
-	let uri = `/member/jjim/${test}`;
-		
-	$.getJSON(uri, function(data){
-			alert(data);
-		});	
-	
-		
-	});
+
+function fetchAndDisplayData(contentId, iTag, spanTag) {
+	if(iTag.attr("class") == "bi-suit-heart") {
+		$.when(
+			$.getJSON('/likes/insert/'+contentId),
+			$.getJSON('/likes/countMembers/'+contentId),
+			$.getJSON('/likes/countLikes')
+		).done(function(response1, response2, response3){
+			setHeart(iTag);
+			console.log(response1[0].result);
+			spanTag.html(Number(response2[0].result+1));
+			$(".likes-count").html(Number(response3[0].result) + 1);
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+			console.error('Error fetching data:', errorThrown);
+		});
+	} else {
+		$.when(
+			$.getJSON('/likes/delete/'+contentId),
+			$.getJSON('/likes/countMembers/'+contentId),
+			$.getJSON('/likes/countLikes')
+		).done(function(response1, response2, response3){
+			unsetHeart(iTag);
+			console.log(response1[0].result);
+			spanTag.html(Number(response2[0].result));
+			$(".likes-count").html(Number(response3[0].result) + 1);
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+			console.error('Error fetching data:', errorThrown);
+		});
+	}	
 }
+
+function setHeart(tag) {
+	tag.attr("class", "bi-suit-heart-fill");
+}
+
+function unsetHeart(tag) {
+	tag.attr("class", "bi-suit-heart");
+}
+
 
 function checkUserid(){
 	$("#checkUseridBtn").click(function(){

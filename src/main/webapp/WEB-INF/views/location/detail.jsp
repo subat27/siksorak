@@ -44,6 +44,9 @@
 	</table>
 	<table>
 			<tr>
+				<th colspan="2" style="text-align: center">공통정보</th>
+			</tr>
+			<tr>
 				<th style="width:7%">장소명</th>
 				<td>${details.get(0)["title"] }</td>
 			</tr>
@@ -71,6 +74,16 @@
 			<th>사진2</th>
 			<td><img class="card-img-top" src="${details.get(0)['firstimage2'] }" width="100%" height="100%" alt="..." /></td>
 		</tr> -->
+			<tr>
+				<th colspan="2" style="text-align: center">컨텐츠타입정보</th>
+			</tr>
+			<c:forEach items="${details2.get(0).keySet() }" var="info">
+				<tr>
+					<th style="width:7%">${info }</th>
+					<td>${details2.get(0)[info] }</td>
+				</tr>
+			</c:forEach>
+		
 	</table>
 	
 	<div id="map" style="width:100%;height:400px;"></div>
