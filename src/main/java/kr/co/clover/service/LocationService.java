@@ -71,7 +71,7 @@ public class LocationService {
 
 	// 찜 목록 가져오기 위해서 별도로 구현한 메소드
 	public Page<Location> findByLocationIds(List<String> locationIdList, int page) {
-		int pagePerBoardCount = 12;
+		int pagePerBoardCount = 3;
 		Pageable pageable = PageRequest.of(page, pagePerBoardCount, Sort.by(Sort.Direction.ASC, "id"));
 		return lRepository.findByContentidIn(locationIdList, pageable);
 	}
