@@ -31,13 +31,15 @@ $(document).ready(function() {
 		});
 	}
 	
-	/* $(".addLikeListBtn").each(function(){
+	$(".addLikeListBtn").each(function(){
 		var contentId = $(this).attr("data-contentId");
-		$.getJSON('/likes/getMembers/'+contentId, function(data){
-			console.log("login:" + login.memberId);
-			console.log(data.result);
+		var iTag = $(this).find("i");
+		$.getJSON('/location/getMembers/'+contentId, function(data){
+			if(data.result.indexOf("${login.userid}") != -1){
+				setHeart(iTag);
+			}			
 		});
-	}); */
+	});
 		
 	/* 페이지 버튼 클릭 */
 	$(".pagenationBtn > button").click(function() {
@@ -103,13 +105,12 @@ $(document).ready(function() {
 				
 	});
 	
+	/* 찜 삭제 버튼 클릭 이벤트 추가*/
 	$(".deleteJjimBtn").click(function() {
 		var contentid = $(this).val();
 		location.href = "/likes/delete/"+contentid;
 	});
-	
-	
-	/* 찜 개수 추가 */
+
 });
 </script>
 </body>

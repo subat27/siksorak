@@ -3,6 +3,8 @@ package kr.co.clover.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -48,12 +50,5 @@ public class MemberLocationService {
 		return mlRepository.countById_Contentid(locationId);
 	}
 	
-	// 관광지별 찜 회원 목록
-	public List<String> findMemberIds(String contentid){
-		List<String> members = new ArrayList<>();
-		for (MemberLocation ml : mlRepository.findById_Contentid(contentid)) {
-			members.add(ml.getMember().getUserid());
-		}
-		return members;
-	}
+	
 }
