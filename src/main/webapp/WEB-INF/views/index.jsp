@@ -22,7 +22,7 @@
 
 
 <!-- Icons Grid-->
-<section class="features-icons bg-light text-center" style="padding: 50px 0;">
+<section class="features-icons bg-light text-center" style="padding: 0px 0;">
 	<div class="container">
 		<div class="row">
 			<!-- 이 div 태그를 누르면 먹거리 화면으로 연결 -->
