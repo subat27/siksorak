@@ -23,10 +23,9 @@ public class MemberLocationService {
 		mlRepository.save(memberLocation);
 	}
 	
-	
 	// 회원별 찜 목록 (관광지 contentId 의 리스트 반환)
 	public Page<MemberLocation> findByMemberId(Integer memberId, int page) {
-		int pagePerBoardCount = 12;
+		int pagePerBoardCount = 3;
 		Pageable pageable = PageRequest.of(page, pagePerBoardCount, Sort.by(Sort.Direction.ASC, "id"));
 		return mlRepository.findLocationById_MemberId(memberId, pageable);
 	}
@@ -37,8 +36,10 @@ public class MemberLocationService {
 	}
 
 	// 찜 목록에서 삭제
-	public String deleteJjim(MemberLocation memberLocation) {
-		mlRepository.delete(memberLocation);
+	public String deleteJjim(Integer memberId, String contentid) {
+		MemberLocation ml = mlRepository.findById_MemberIdAndId_contentid(memberId, contentid).get();
+		mlRepository.deleteById(ml.getId());
+		
 		return "delete";
 	}
 	

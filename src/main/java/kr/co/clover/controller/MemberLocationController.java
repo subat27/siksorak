@@ -58,16 +58,13 @@ public class MemberLocationController {
 
 	// 찜 목록에서 제거 
 	@GetMapping("delete/{locationId}")
-	@ResponseBody
 	public String deleteLike(HttpSession session, HttpServletRequest request, @PathVariable("locationId") String locationId) {
 		Member member = (Member) request.getSession(false).getAttribute("login");
 		member = mService.findByUserid(member.getUserid());
 		
-		MemberLocation memberLocation = new MemberLocation();
-		memberLocation.setLocation(lService.findLocation(locationId));
-		memberLocation.setMember(member);
-		
-		return "{\"result\" : \"" + mlService.deleteJjim(memberLocation) + "\"}";
+		mlService.deleteJjim(member.getMemberId(), locationId);
+				
+		return "redirect:/likes/list";
 	}
 	
 	// 찜 목록 출력

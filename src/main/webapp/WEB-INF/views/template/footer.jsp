@@ -5,17 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
-<!-- Footer-->
-<footer class="footer bg-light">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 h-100 text-center text-lg-end my-auto">
-				<p class="text-muted small mb-4 mb-lg-0">&copy; Clover
-					2024. All Rights Reserved.</p>
-			</div>
-		</div>
-	</div>
-</footer>
+
 
 
 <script
@@ -113,9 +103,25 @@ $(document).ready(function() {
 				
 	});
 	
+	$(".deleteJjimBtn").click(function() {
+		var contentid = $(this).val();
+		location.href = "/likes/delete/"+contentid;
+	});
+	
 	
 	/* 찜 개수 추가 */
 });
 </script>
 </body>
+<!-- Footer-->
+<footer class="footer bg-light">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 h-100 text-center text-lg-end my-auto">
+				<p class="text-muted small mb-4 mb-lg-0">&copy; Clover
+					2024. All Rights Reserved.</p>
+			</div>
+		</div>
+	</div>
+</footer>
 </html>

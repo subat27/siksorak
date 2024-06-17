@@ -85,7 +85,7 @@
 
 
 					<li class="nav-item"><a class="nav-link" aria-current="page"
-						href="weather/allData">날씨</a></li>
+						href="/weather/allData">날씨</a></li>
 
 				</ul>
 

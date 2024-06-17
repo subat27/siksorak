@@ -56,14 +56,12 @@
 					<div class="mb-3">
 						<div class="row row-cols-1 card">
 
-							
-
 							<div class="col card-body">
 								<!-- 관광지 이미지 -->
 								<img class="row row-cols-2 card-img-left left"
-								src="${memberLocation.location.firstimage }"
-								onerror="this.onerror=null; this.src='/image/noImage.png'"
-								alt="..." style="height: 150px; width: 150px;"/>
+									src="${memberLocation.location.firstimage }"
+									onerror="this.onerror=null; this.src='/image/noImage.png'"
+									alt="..." style="height: 150px; width: 150px;" />
 								<!-- 관광지 상세 -->
 								<div class="p-2">
 									<div class="text-center">
@@ -74,45 +72,30 @@
 									</div>
 								</div>
 
-
 								<!-- 상세 페이지로 이동 -->
 
 								<div class="text-center p-2">
 									<a class="btn btn-outline-dark mt-auto"
 										href="/test2?contentId=${memberLocation.location.contentid}">상세보기</a>
 
-									<input class="lat" type="hidden" value="${memberLocation.location.mapy}">
-									<input class="lng" type="hidden" value="${memberLocation.location.mapx}">
+									<input class="lat" type="hidden"
+										value="${memberLocation.location.mapy}"> <input
+										class="lng" type="hidden"
+										value="${memberLocation.location.mapx}"> <input
+										class="title" type="hidden"
+										value="${memberLocation.location.title}"> <input
+										class="tel" type="hidden"
+										value="${memberLocation.location.tel}">
+
+									<button id="jjimBtn" type="button"
+										class="btn btn-outline-dark mt-auto deleteJjimBtn" name="jjimBtn" value="${memberLocation.location.contentid}">
+										<i class="bi-suit-heart-fill me-1"></i>
+									</button>
 									
-									<input class="title" type="hidden" value="${memberLocation.location.title}">
-									<input class="tel" type="hidden" value="${memberLocation.location.tel}">
-									
-									<c:choose>
-										<c:when test="${empty login}">
-											<button id="jjimBtn" type="button"
-												class="btn btn-outline-dark mt-auto" name="jjimBtn">
-												<i class="bi-suit-heart me-1"></i>
-											</button>
-
-										</c:when>
-										<c:otherwise>
-
-											<button id="jjimBtn" type="button"
-												class="btn btn-outline-dark mt-auto jjimBtn" name="jjimBtn"
-												value="${memberLocation.location.contentid}">
-												<i class="bi-suit-heart me-1"></i>
-											</button>
-
-										</c:otherwise>
-									</c:choose>
-
 								</div>
 							</div>
-
-
 						</div>
 					</div>
-
 
 				</c:forEach>
 
@@ -125,9 +108,9 @@
 
 	</div>
 </section>
+
 <script type="text/javascript" src="/js/api_key.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
 	var map = null;
 	const NAVER_MAP_API = config.naver_map_key;
@@ -178,14 +161,12 @@
 			var markerList = [];
 			for (var i = 0; i < coordinates.length; i++) {
 				var marker = new naver.maps.Marker({
-					position : new naver.maps.LatLng(coordinates[i].lat,
-							coordinates[i].lng),
+					position : new naver.maps.LatLng(coordinates[i].lat, coordinates[i].lng),
 					map : map
 				});
 
 				// 정보 창을 생성하고 마커에 추가합니다.
-				var content = '<div style="padding:10px;">' + maintitle[i]
-						+ '<br>' + maintel[i] + '</div>';
+				var content = '<div style="padding:10px;">' + maintitle[i] + '<br>' + maintel[i] + '</div>';
 				var infowindow = new naver.maps.InfoWindow({
 					content : content
 				});
@@ -210,5 +191,6 @@
 		var markers = createMarkers(map, coordinates);
 	});
 </script>
+
 <%@ include file="../template/footer.jsp"%>
 
