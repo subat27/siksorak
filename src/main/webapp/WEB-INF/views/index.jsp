@@ -10,14 +10,18 @@
 <%@ include file="template/header.jsp"%>
 
 
-<div class="bg-dark py-5" style="height: 600px;">
-	<div class="container px-4 px-lg-5 my-5">
-		<div class="text-center text-white">
-			<h1 class="display-4 fw-bolder">추천 관광지 이미지</h1>
-			<p class="lead fw-normal text-white-50 mb-0">관광지 3~4장소</p>
-		</div>
+
+	<div style="position: relative; overflow: hidden; class="container px-4 px-lg-5 my-5">
+	<a href="http://localhost:8900/location/list?sigunguCode=&keyword=%EA%B6%81&contentType=%EB%AA%85%EC%86%8C">
+		<img style="height: 700px; width: 100%;" alt="" src="/image/gyeongbokgung.jpg">
+		<div style="position: absolute; top: 100px; left: 450px; color: white; font-size: 70px; font-weight: bold; text-shadow: 1px 1px 2px black;">
+        	서울의 역사적인 아름다움을 담은 궁궐
+    	</div>
+    </a>	
 	</div>
-</div>
+
+
+
 
 <!-- Icons Grid-->
 <section class="features-icons bg-light text-center" style="padding: 50 

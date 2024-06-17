@@ -136,8 +136,8 @@
 
 		var HOME_PATH = window.HOME_PATH || '.';
 		var map = new naver.maps.Map('map', {
-			center : new naver.maps.LatLng(37.3595704, 127.105399),
-			zoom : 10
+			center : new naver.maps.LatLng(37.5595704, 126.955399),
+			zoom : 11
 		});
 
 		// lat와 lng 값을 가져오기 위해 DOM을 이용해서 요소를 선택합니다.

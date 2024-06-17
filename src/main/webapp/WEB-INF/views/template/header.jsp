@@ -58,7 +58,8 @@
 		<div class="container px-4 px-lg-5">
 
 			<a class="navbar-brand" href="/"
-				style="font-family: 'Freesentation-6SemiBold'; font-weight: 100;">식소락
+				style="font-family: 'Freesentation-6SemiBold'; font-weight: 100;">
+				<img style="height: 50px; width: 50px;" alt="" src="/image/siksorak_logo.png">
 			</a>
 			<!-- 웹페이지 사이즈가 작아 졌을 때 햄버거 버튼으로 변환 -->
 			<button class="navbar-toggler" type="button"
@@ -85,7 +86,7 @@
 
 
 					<li class="nav-item"><a class="nav-link" aria-current="page"
-						href="weather/allData">날씨</a></li>
+						href="/weather/allData">날씨</a></li>
 
 				</ul>
 
