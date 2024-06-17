@@ -5,17 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
-<!-- Footer-->
-<footer class="footer bg-light">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 h-100 text-center text-lg-end my-auto">
-				<p class="text-muted small mb-4 mb-lg-0">&copy; Clover
-					2024. All Rights Reserved.</p>
-			</div>
-		</div>
-	</div>
-</footer>
+
 
 
 <script
@@ -41,13 +31,15 @@ $(document).ready(function() {
 		});
 	}
 	
-	/* $(".addLikeListBtn").each(function(){
+	$(".addLikeListBtn").each(function(){
 		var contentId = $(this).attr("data-contentId");
-		$.getJSON('/likes/getMembers/'+contentId, function(data){
-			console.log("login:" + login.memberId);
-			console.log(data.result);
+		var iTag = $(this).find("i");
+		$.getJSON('/location/getMembers/'+contentId, function(data){
+			if(data.result.indexOf("${login.userid}") != -1){
+				setHeart(iTag);
+			}			
 		});
-	}); */
+	});
 		
 	/* 페이지 버튼 클릭 */
 	$(".pagenationBtn > button").click(function() {
@@ -113,9 +105,24 @@ $(document).ready(function() {
 				
 	});
 	
-	
-	/* 찜 개수 추가 */
+	/* 찜 삭제 버튼 클릭 이벤트 추가*/
+	$(".deleteJjimBtn").click(function() {
+		var contentid = $(this).val();
+		location.href = "/likes/delete/"+contentid;
+	});
+
 });
 </script>
 </body>
+<!-- Footer-->
+<footer class="footer bg-light">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 h-100 text-center text-lg-end my-auto">
+				<p class="text-muted small mb-4 mb-lg-0">&copy; Clover
+					2024. All Rights Reserved.</p>
+			</div>
+		</div>
+	</div>
+</footer>
 </html>

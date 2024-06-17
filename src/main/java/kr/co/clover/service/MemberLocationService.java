@@ -3,6 +3,8 @@ package kr.co.clover.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +25,6 @@ public class MemberLocationService {
 		mlRepository.save(memberLocation);
 	}
 	
-	
 	// 회원별 찜 목록 (관광지 contentId 의 리스트 반환)
 	public Page<MemberLocation> findByMemberId(Integer memberId, int page) {
 		int pagePerBoardCount = 3;
@@ -37,8 +38,10 @@ public class MemberLocationService {
 	}
 
 	// 찜 목록에서 삭제
-	public String deleteJjim(MemberLocation memberLocation) {
-		mlRepository.delete(memberLocation);
+	public String deleteJjim(Integer memberId, String contentid) {
+		MemberLocation ml = mlRepository.findById_MemberIdAndId_contentid(memberId, contentid).get();
+		mlRepository.deleteById(ml.getId());
+		
 		return "delete";
 	}
 	
@@ -47,12 +50,5 @@ public class MemberLocationService {
 		return mlRepository.countById_Contentid(locationId);
 	}
 	
-	// 관광지별 찜 회원 목록
-	public List<String> findMemberIds(String contentid){
-		List<String> members = new ArrayList<>();
-		for (MemberLocation ml : mlRepository.findById_Contentid(contentid)) {
-			members.add(ml.getMember().getUserid());
-		}
-		return members;
-	}
+	
 }
